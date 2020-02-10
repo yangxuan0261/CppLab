@@ -5,6 +5,7 @@ project(TestCpp)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# set 设置变量
 set(SOURCE_FILES main.cpp test.cpp test.h)
 
 set(INC_DIR ${PROJECT_SOURCE_DIR}/Tool01)
@@ -21,6 +22,7 @@ configure_file(
 include_directories(${INC_DIR}) # 相当于gcc/clang 中的-I(i的大写字母)参数, 引入 头文件 目录
 link_directories(${LINK_DIR}) # 相当于gcc 中的-L参数, 引入 库文件 目录
 
+# 生成 可执行文件
 add_executable(TestCpp ${SOURCE_FILES})
 
 target_link_libraries(TestCpp Tool01) # 相当于gcc中的-l(小写的l)参数, 链接 库文件
@@ -30,3 +32,6 @@ add_definitions(
         -D USE_LOG=3 # 定义值
         -D USE_FILTER
 )
+
+set(p6 helloworld)
+message(STATUS "after bar p6=${p6}") # 输出日志
