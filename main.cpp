@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     // BinaryTree::main();
     //  BinaryTreeBigestDist::main();
     // BitTest::main();
-    // ByteAlign::main();
+     ByteAlign::main();
     // ConstTest::main();
     // DeconstructTest::main();
     // DeepCopy::main();
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     // OverrideTest::main();
     // PartialTemplateSpecialization::main();
     // PodTest::main();
-    QuickSort::main();
+//    QuickSort::main();
     // RandomNum::main();
     // RightValueRef::main();
     // SizeofTest::main();

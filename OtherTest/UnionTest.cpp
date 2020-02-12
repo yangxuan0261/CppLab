@@ -56,7 +56,7 @@ namespace UnionTest {
             char b;
         } c;
         c.a = 1;
-        printf("ptr address:%x\n", &c.b);
+        printf("ptr address:%p\n", &c.b);
         if (c.b == 1)
             printf("is little endian\n");
         else

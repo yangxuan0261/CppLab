@@ -5,12 +5,20 @@
 
 run
 
-```json
-mkdir build
-cd build
-cmake ..
-make
-```
+- windows
+
+    ```json
+    cmake.exe --build E:\ws_cpp\Cpp-Lab\cmake-build-debug --target Cpp-Lab -- -j 6
+    ```
+    
+- linux
+
+    ```json
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ```
 
 
 

@@ -74,26 +74,26 @@ namespace ByteAlign {
         int x4 = (int) *((short *) (&ms) + 12);
 
 
-        printf("--- ms:0x%x\n", &ms);
-        //printf("--- x1:0x%x, val=%d\n", &ms.x1, x1);
-        printf("--- x2:0x%x, val=%d\n", &ms.x2, (int) x2);
-        printf("--- x5:0x%x, val=%d\n", &ms.x5, x5);
-        printf("--- x3:0x%x, val=%lf\n", &ms.x3, x3);
-        printf("--- x4:0x%x, val=%d\n", &ms.x4, x4);
+        printf("--- ms:0x%p\n", &ms);
+        //printf("--- x1:0x%p, val=%d\n", &ms.x1, x1);
+        printf("--- x2:0x%p, val=%d\n", &ms.x2, (int) x2);
+        printf("--- x5:0x%p, val=%d\n", &ms.x5, x5);
+        printf("--- x3:0x%p, val=%lf\n", &ms.x3, x3);
+        printf("--- x4:0x%p, val=%d\n", &ms.x4, x4);
 
         void *voidPtr = (short *) (&ms) + 8;
-        printf("--- voidPtr:0x%x\n", voidPtr);
+        printf("--- voidPtr:0x%p\n", voidPtr);
 
         double dstNum = (double) *((short *) (&ms) + 12);
         printf("--- dstNum:%lf\n", dstNum);
 
         //void* vtPtr = (int*)(&ms);
         //CustFunc cf = (CustFunc)*((int*)*(int*)(&ms));
-        //printf("--- cf:0x%x\n", vtPtr);
+        //printf("--- cf:0x%p\n", vtPtr);
         //cf();
 
         //CustFunc2 cf2 = std::bind(&MyStruct1::Func2, &ms);
-        //printf("--- cf2:0x%x\n", cf2);
+        //printf("--- cf2:0x%p\n", cf2);
 
     }
 
@@ -174,8 +174,8 @@ namespace ByteAlign {
     }
 
     void main() {
-        //testByteAlign();
-        testByteAlign2();
+        testByteAlign();
+//        testByteAlign2();
         //testByteAlign3();
         //testByteAlign4();
     }

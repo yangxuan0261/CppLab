@@ -579,7 +579,7 @@
 //        //std::array<int, 5> arr1; //全部值未初始化
 //        //std::array<int, 5> arr1 = { 1 }; //第一个初始化为1，其余全部为0
 //        std::array<int, 5> arr1 = {20, 1, 1, 10, 1}; //全部初始化为1
-//        printf("--- arr1 size : %d, addr:0x%x\n", sizeof(arr1), &arr1);
+//        printf("--- arr1 size : %d, addr:0x%p\n", sizeof(arr1), &arr1);
 //        printf("--- arr1 first element:%d\n", arr1);
 //        printf("--- arr1[3] element:%d\n", arr1[3]);
 //
@@ -590,7 +590,7 @@
 //        //});
 //
 //        std::array<int, 5> arr2 = arr1; //全部初始化为1
-//        printf("--- arr2 size : %d, addr:0x%x\n", sizeof(arr2), &arr2);
+//        printf("--- arr2 size : %d, addr:0x%p\n", sizeof(arr2), &arr2);
 //    }
 //
 ////队列中元素累计
@@ -703,9 +703,9 @@
 //        int val2 = 5;
 //        const int &c = std::min(val2, val1, [](const int &_a, const int &_b) { return _a < _b ? true : false; });
 //        const int &d = std::max(val1, val2, [](const int &_a, const int &_b) { return _a < _b ? true : false; });
-//        printf("--- val1:0x%x, val2:0x%x\n", &val1, &val2);
-//        printf("--- min val:%d, 0x%x\n", c, &c);
-//        printf("--- max val:%d, 0x%x\n", d, &d);
+//        printf("--- val1:0x%p, val2:0x%p\n", &val1, &val2);
+//        printf("--- min val:%d, 0x%p\n", c, &c);
+//        printf("--- max val:%d, 0x%p\n", d, &d);
 //
 //        auto e = std::minmax(val1, val2, [](const int &_a, const int &_b) { return _a < _b ? true : false; });
 //        printf("--- min:%d, max:%d\n", e.first, e.second);

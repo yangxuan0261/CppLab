@@ -175,9 +175,9 @@ namespace VitualTableTest {
         printf("--- Tmp size : %d\n", sizeof(Tmp));
         printf("--- dev size : %d\n", sizeof(dev));
 
-        printf("--- str:0x%x\n", str);
+        printf("--- str:0x%p\n", str);
         Tmp *tmp = (Tmp *) &(*((int *) (&d) + 7));
-        printf("--- tmp:0x%x\n", tmp);
+        printf("--- tmp:0x%p\n", tmp);
         printf("--- tmp.b:%d\n", tmp->b);
 
         short tmpA = (short) *((int *) (&d) + 7);

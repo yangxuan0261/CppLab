@@ -137,10 +137,10 @@ namespace Lambda {
         //如果是按值捕捉，想要修改捕捉拷贝进来的外部值，就必须指定mutable，但外部值不会改变
 
         int j = 12;
-        printf("--- j addr:0x%x\n", &j);
+        printf("--- j addr:0x%p\n", &j);
         auto by_ref = [&]() -> void {
             j++;
-            printf("--- by_ref j addr:0x%x\n", &j);
+            printf("--- by_ref j addr:0x%p\n", &j);
         };
         by_ref();
         printf("--- by_ref:%d\n", j); //13
@@ -148,7 +148,7 @@ namespace Lambda {
         //auto by_val = [=]()->void{ j++; };//编译失败
         auto by_val = [=]() mutable -> void {
             j = 10; //j可以被修改了，但外部还是13
-            printf("--- by_val j addr:0x%x\n", &j);
+            printf("--- by_val j addr:0x%p\n", &j);
         };
         by_val();
         printf("--- by_val:%d\n", j); //13
