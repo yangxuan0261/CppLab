@@ -14,7 +14,7 @@ namespace BaseTest {
 
     void testStr(float _num) {
         char buff[12];
-        sprintf_s(buff, "%0.2f", _num);
+        sprintf(buff, "%0.2f", _num);
         printf("--- buff: %s\n", buff);
 
         string str = "asdwa";
