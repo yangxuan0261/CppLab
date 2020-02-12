@@ -44,77 +44,52 @@ namespace UnionTest { void main(); }
 namespace UsingTest { void main(); }
 namespace VitualTableTest { void main(); }
 
-int main() {
-	//system("chcp 65001"); // 防止中文乱码, 设置字符集
+int main(int argc, char *argv[]) {
+    //system("chcp 65001"); // 防止中文乱码, 设置字符集
 
-	// AT1::main();
-	// ACompareSort::main();
-	// AutoDecltypeTest::main();
-	// BaseTest::main();
-	// BinaryTree::main();
-	//  BinaryTreeBigestDist::main();
-	// BitTest::main();
-	// ByteAlign::main();
-	// ConstTest::main();
-	// DeconstructTest::main();
-	// DeepCopy::main();
-	// DelegatingConstructor::main();
-	// EnumClassScope::main();
-	// FileIOTest::main();
-	// FriendTrest::main();
-	// Greedy::main();
-	// greedyTest::main();
+    // AT1::main();
+    // ACompareSort::main();
+    // AutoDecltypeTest::main();
+    // BaseTest::main();
+    // BinaryTree::main();
+    //  BinaryTreeBigestDist::main();
+    // BitTest::main();
+    // ByteAlign::main();
+    // ConstTest::main();
+    // DeconstructTest::main();
+    // DeepCopy::main();
+    // DelegatingConstructor::main();
+    // EnumClassScope::main();
+    // FileIOTest::main();
+    // FriendTrest::main();
+    // Greedy::main();
+    // greedyTest::main();
 //	HeapSort::main();
-	// Lambda::main();
+    // Lambda::main();
 
-	// lruTest::main();
-	// MakeEnumToString::main();
-	// MergeSort::main();
-	// MoveConstruct::main();
-	// MutipleArgsTest::main();
-	// MyString::main();
-	// OptimalBST::main();
-	// OptimalBST2::main();
-	// OverrideTest::main();
-	// PartialTemplateSpecialization::main();
-	// PodTest::main();
-	 QuickSort::main();
-	// RandomNum::main();
-	// RightValueRef::main();
-	// SizeofTest::main();
-	// SmartPointTest::main();
-	// STLtest::main();
-	// TemplateTest::main();
-	// TemplateTest2::main();
-	// UnionTest::main();
-	// UsingTest::main();
-	//VitualTableTest::main();
+    // lruTest::main();
+    // MakeEnumToString::main();
+    // MergeSort::main();
+    // MoveConstruct::main();
+    // MutipleArgsTest::main();
+    // MyString::main();
+    // OptimalBST::main();
+    // OptimalBST2::main();
+    // OverrideTest::main();
+    // PartialTemplateSpecialization::main();
+    // PodTest::main();
+    QuickSort::main();
+    // RandomNum::main();
+    // RightValueRef::main();
+    // SizeofTest::main();
+    // SmartPointTest::main();
+    // STLtest::main();
+    // TemplateTest::main();
+    // TemplateTest2::main();
+    // UnionTest::main();
+    // UsingTest::main();
+    //VitualTableTest::main();
 
-	system("pause");
-	return 0;
-}
-
-#include <iostream>
-#include "test.h"
-
-#include "library.h"
-
-/*
-int main() {
-    std::cout << "Hello, World 3!" << std::endl;
-    CTest::print();
-    hello();
-
-#if (USE_LOG == 3)
-    std::cout << USE_LOG << std::endl;
-    std::cout << "USE_LOG yes! " << std::endl;
-#endif
-
-#ifdef USE_FILTER
-    std::cout << "USE_FILTER yes!" << std::endl;
-#endif
 //    system("pause");
     return 0;
 }
-*/
-

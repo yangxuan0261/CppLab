@@ -13,3 +13,4 @@ _deps
 # custom
 cmake-build-debug
 .idea
+build
