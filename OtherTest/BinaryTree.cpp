@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
-#include <Stack>
-#include <Queue>
+#include <queue>
 #include <vector>
 #include <string>
 #include <map>
+#include <stack>
 
 using namespace std;
 #define Element char
