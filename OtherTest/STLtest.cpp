@@ -15,8 +15,6 @@
 #include <random>
 #include <unordered_map>
 #include <cstring>
-#include <tr1/functional>
-
 
 namespace STLtest {
 
@@ -256,8 +254,9 @@ namespace STLtest {
         //func(tmplist);
         //printf("--- list size:%d\n", tmplist.size());
 
-        std::stable_sort(tmplist.begin(), tmplist.end(),
-                         [](const int &_a, const int &_b) { return _a > _b ? true : false; });
+        tmplist.sort([](const int &_a, const int &_b) { return _a > _b ? true : false; });
+//        std::stable_sort(tmplist.begin(), tmplist.end(),
+//                         [](const int &_a, const int &_b) { return _a > _b ? true : false; });
         func(tmplist);
         printf("--- list size:%d\n", tmplist.size());
     }
@@ -1005,8 +1004,8 @@ namespace STLtest {
 
     struct str_hash {
         size_t operator()(const std::string &str) const {
-            std::tr1::hash<std::string> hash_value;
-            return hash_value(str.c_str());
+            std::hash<std::string> hash_value;
+            return hash_value(str);
         }
     };
 
@@ -1035,6 +1034,7 @@ namespace STLtest {
         bool operator==(const Plane &p) const {
             return mSpeed == p.mSpeed ? true : false;
         }
+
 
     public:
         int mSpeed;
@@ -1091,7 +1091,7 @@ namespace STLtest {
         //testVecInsert();
         //testPartialSort();
         //testNth_element();
-        testPartition();
+//        testPartition();
         //testRemoveAndErase();
         //testSearch();
         //testSearchForMap();
@@ -1117,10 +1117,10 @@ namespace STLtest {
         //testNextPermutation();
         //testMismatch();
         //testCopy();
-        //testUnorderMap();
+//        testUnorderMap();
         //testMapWithCmpFunc1();
         //testMapWithCmpFunc2();
-        //testUnorderHashKey();
+        testUnorderHashKey();
     }
 
 /*

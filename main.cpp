@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     // BinaryTree::main();
     //  BinaryTreeBigestDist::main();
     // BitTest::main();
-    ByteAlign::main();
+//    ByteAlign::main();
     // ConstTest::main();
     // DeconstructTest::main();
     // DeepCopy::main();
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
     // RightValueRef::main();
     // SizeofTest::main();
     // SmartPointTest::main();
-    // STLtest::main();
+     STLtest::main();
     // TemplateTest::main();
     // TemplateTest2::main();
     // UnionTest::main();
