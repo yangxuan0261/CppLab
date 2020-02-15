@@ -8,7 +8,7 @@ run
 - windows
 
     ```json
-    cmake.exe --build E:\ws_cpp\Cpp-Lab\cmake-build-debug --target Cpp-Lab -- -j 6
+    cmake.exe --build E:\ws_cpp\CppLab\cmake-build-debug --target CppLab -- -j 6
     ```
     
 - linux

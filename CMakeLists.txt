@@ -1,7 +1,7 @@
 # 加入 其他模块
 
 cmake_minimum_required(VERSION 3.15)
-project(Cpp-Lab)
+project(CppLab)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -23,4 +23,4 @@ file(GLOB_RECURSE SRC_OtherTest
 
 set(SOURCE_FILES main.cpp ${SRC_OtherTest} ${SRC_ExternTest} ${AlgorithmTest})
 
-add_executable(Cpp-Lab ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
