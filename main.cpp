@@ -45,7 +45,9 @@ namespace UsingTest { void main(); }
 namespace VitualTableTest { void main(); }
 
 int main(int argc, char *argv[]) {
-    //system("chcp 65001"); // 防止中文乱码, 设置字符集
+    system("chcp 65001"); // 防止中文乱码, 设置字符集
+
+    printf("中国智造");
 
     // AT1::main();
     // ACompareSort::main();
@@ -54,7 +56,7 @@ int main(int argc, char *argv[]) {
     // BinaryTree::main();
     //  BinaryTreeBigestDist::main();
     // BitTest::main();
-     ByteAlign::main();
+    ByteAlign::main();
     // ConstTest::main();
     // DeconstructTest::main();
     // DeepCopy::main();

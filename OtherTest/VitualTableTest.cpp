@@ -319,7 +319,7 @@ namespace VitualTableTest {
         hv.d3 = 333;
 
         //无论虚函数放在对象的哪个位置，对象中的虚函数表都是位于对象内存分布的顶端
-        Fun pFunc = (Fun) *((int *) (*((int *) (&hv) + 0)) + 0); //foo 方法
+        Fun pFunc = (Fun) *((int *) (*((int *) (&hv) + 0)) + 0); // foo 方法
         pFunc();
 
         int d1 = (int) *((int *) (&hv) + 1); //111
