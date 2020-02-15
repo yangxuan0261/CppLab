@@ -47,7 +47,7 @@ namespace VitualTableTest { void main(); }
 int main(int argc, char *argv[]) {
     system("chcp 65001"); // 防止中文乱码, 设置字符集
 
-    printf("中国智造");
+    printf("--- 中文测试: 中国智造\n");
 
     // AT1::main();
     // ACompareSort::main();
