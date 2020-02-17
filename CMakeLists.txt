@@ -21,6 +21,28 @@ file(GLOB_RECURSE SRC_OtherTest
         OtherTest/**.cpp
         )
 
-set(SOURCE_FILES main.cpp ${SRC_OtherTest} ${SRC_ExternTest} ${AlgorithmTest})
+# 测试 gtest 的代码
+file(GLOB_RECURSE SRC_GTest
+        GTest/add/*.h
+        GTest/add/*.cpp
+        )
+
+#set(mainCpp main.cpp)
+set(mainCpp GTest/main.cpp) # gtest 入口文件
+set(SOURCE_FILES ${mainCpp} ${SRC_OtherTest} ${SRC_ExternTest} ${AlgorithmTest} ${SRC_GTest})
+
+############# googletest module begin #############
+set(gtName gtest) # gtest 库名
+add_subdirectory(googletest) # gtest 目录
+include_directories(googletest/googletest/include)
+link_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/googletest # gtest 头文件目录
+)
+############# googletest module end #############
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+target_link_libraries(${PROJECT_NAME} ${gtName}) # 链接 gtest
+
+message(STATUS "--- Done!")
+
