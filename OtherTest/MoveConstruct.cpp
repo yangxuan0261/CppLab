@@ -8,25 +8,6 @@
 
 namespace MoveConstruct {
 
-    class CMoveConstruct : public ::testing::Test {
-    public:
-        CMoveConstruct() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CMoveConstruct() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class Human {
     public:
         Human() : mNum(nullptr) {
@@ -67,7 +48,7 @@ namespace MoveConstruct {
         return Human(); //直接构造给外部值，不会产生临时变量，也不会调用自定义拷贝构造或者移动构造，只会进行位拷贝，谨慎
     }
 
-    TEST_F(CMoveConstruct, test_moveConstruct) {
+    TEST(TestMoveConstruct, test_moveConstruct) {
         Human h2 = GetHuman();//如果没有移动构造，将会调用拷贝构造，又涉及到深拷贝，但还是释放临时对象中产生的内存
         h2.show();            //而移动构造直接使用临时对象中产生的内存，减少了一次new和delete的操作
     }
@@ -81,7 +62,7 @@ Human 析构
 Human 析构
 */
 
-    TEST_F(CMoveConstruct, test_rValueRef01) {
+    TEST(TestMoveConstruct, test_rValueRef01) {
         Human h2 = GetHuman2(); //因为直接构造给外部值作为临时变量，且这里是右值引用，所以生命周期随h2结束而结束
         h2.show();
         //h2 = GetHuman2(); //GetHuman2按位拷贝给h2，导致临时变量被析构后h2.num会指向被析构过的内存，h2生命周期结束再次delete num，崩
@@ -100,7 +81,7 @@ Human 析构
         Human h2 = std::move(_h); //这里将再次移动构造一个对象h2，待_h(临时对象)和h2对象的生命周期结束(这个方法结束)后都会析构
     }
 
-    TEST_F(CMoveConstruct, test_rValueRef02) {
+    TEST(TestMoveConstruct, test_rValueRef02) {
         AcceptRValueRef(GetHuman()); //GetHuman里会构造一个对象，然后移动构造一个临时对象作为形参传入
     }
 
@@ -116,7 +97,7 @@ Human 析构
 请按任意键继续. . . //3
 */
 
-    TEST_F(CMoveConstruct, test_rValueRef03) {
+    TEST(TestMoveConstruct, test_rValueRef03) {
         //int&& num = 1 + 1; //右值引用 123 或 1+1的结果2 等临时变量，因为这临时变量在这行代码结束后就会销毁
         int &&num = 123; //通过右值引用让其生命得以延续，随着num的结束而结束
         num += 123;

@@ -7,25 +7,6 @@
 
 namespace Template {
 
-    class CTemplate : public ::testing::Test {
-    public:
-        CTemplate() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CTemplate() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //------------ test1
     template<typename T = int> //c++98编译通过，c++11编译通过
     class DefClass {
@@ -50,7 +31,7 @@ namespace Template {
     template<int i = 0, typename T2>
     void DefFunc2(T2 a) {}
 
-    TEST_F(CTemplate, test_template01) {
+    TEST(TestTemplate, test_template01) {
 
     }
 
@@ -71,7 +52,7 @@ namespace Template {
         int mAge;
     };
 
-    TEST_F(CTemplate, test_template04) {
+    TEST(TestTemplate, test_template04) {
 
         Person *pA = new Person();
         pA->mName = std::string("aaa");

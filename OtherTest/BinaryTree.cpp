@@ -15,26 +15,6 @@ using namespace std;
 
 namespace BinaryTree {
 
-    class CBinaryTree : public ::testing::Test {
-    public:
-        CBinaryTree() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CBinaryTree() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-
     typedef struct Node {
         Element data;
         struct Node *lchild;
@@ -93,7 +73,7 @@ namespace BinaryTree {
         }
     }
 
-    TEST_F(CBinaryTree, test_main) {
+    TEST(TestBinaryTree, test_main) {
 //    system("chcp 65001"); // 防止中文乱码, 设置字符集
         // 构成的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928173554.png
         //上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树

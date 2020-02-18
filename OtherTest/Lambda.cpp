@@ -10,25 +10,6 @@
 
 namespace Lambda {
 
-    class CLambda : public ::testing::Test {
-    public:
-        CLambda() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CLambda() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     // std::function<返回值(形参)>
     typedef std::function<int(const std::string &)> CustomFunc;
 
@@ -39,7 +20,7 @@ namespace Lambda {
         printf("--- result:%d\n", result);
     }
 
-    TEST_F(CLambda, test_funcPtr) {
+    TEST(TestLambda, test_funcPtr) {
         int num = 123;
         int num2 = 789;
 
@@ -64,7 +45,7 @@ namespace Lambda {
         printf("--- num2:%d\n", num2);
     }
 
-    TEST_F(CLambda, test_lambda) {
+    TEST(TestLambda, test_lambda) {
         /*
         以下是关于捕捉块的详细介绍：
         [=]通过值捕捉所有变量
@@ -140,7 +121,7 @@ namespace Lambda {
         */
     }
 
-    TEST_F(CLambda, test_refAndValCapture) {
+    TEST(TestLambda, test_refAndValCapture) {
         int j = 12;
         auto by_val = [=]() -> int { return j + 1; };
         auto by_ref = [&]() -> int { return j + 1; };
@@ -154,7 +135,7 @@ namespace Lambda {
         //按引用不做，j仍在使用父作用域中的值
     }
 
-    TEST_F(CLambda, test_modifyVal) {
+    TEST(TestLambda, test_modifyVal) {
         //lambda表达式{}逻辑块内默认是const的，如果是想修改外部值的话，必须按引用捕捉，外部值会随着改变
         //如果是按值捕捉，想要修改捕捉拷贝进来的外部值，就必须指定mutable，但外部值不会改变
 

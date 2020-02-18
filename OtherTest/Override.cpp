@@ -6,25 +6,6 @@
 
 namespace Override {
 
-    class COverride : public ::testing::Test {
-    public:
-        COverride() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~COverride() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class CBase {
     public:
         CBase() { printf("--- CBase 构造\n"); }
@@ -60,7 +41,7 @@ namespace Override {
 
     };
 
-    TEST_F(COverride, test_override) {
+    TEST(TestOverride, test_override) {
         CBase *d1 = new CDev;
 
         d1->test1(1, "asd");

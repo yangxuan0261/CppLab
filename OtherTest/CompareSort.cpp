@@ -9,25 +9,6 @@ using namespace std;
 
 namespace CompareSort {
 
-    class CCompareSort : public ::testing::Test {
-    public:
-        CCompareSort() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CCompareSort() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //------------------------快速排序----------------------------
     void quick_sort(int s[], int l, int r) {
         if (l < r) {
@@ -135,7 +116,7 @@ namespace CompareSort {
     int a[MAXN];
     int b[MAXN], c[MAXN], d[MAXN];
 
-    TEST_F(CCompareSort, test_compareSort) {
+    TEST(TestCompareSort, test_compareSort) {
         int i;
         srand(time(NULL));
         for (i = 0; i < MAXN; ++i)

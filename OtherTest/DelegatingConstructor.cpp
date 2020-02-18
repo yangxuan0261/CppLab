@@ -7,25 +7,6 @@
 
 namespace DelegatingConstructor {
 
-    class CDelegatingConstructor : public ::testing::Test {
-    public:
-        CDelegatingConstructor() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CDelegatingConstructor() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 /*
 委派构造函数的使用，类似与构造基类
 */
@@ -55,7 +36,7 @@ namespace DelegatingConstructor {
         float mHeight;
     };
 
-    TEST_F(CDelegatingConstructor, test_DelegatingConstructor) {
+    TEST(TestDelegatingConstructor, test_DelegatingConstructor) {
         Info info(77, "yang");
         /*
         --- init mheight:1.230000

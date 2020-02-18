@@ -9,26 +9,6 @@ using namespace std;
 
 namespace BinaryTreeBigestDist {
 
-    class CBinaryTreeBigestDist : public ::testing::Test {
-    public:
-        CBinaryTreeBigestDist() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CBinaryTreeBigestDist() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-
     int myindex = 0;  //全局索引变量
 
     typedef struct Node {
@@ -137,7 +117,7 @@ namespace BinaryTreeBigestDist {
         }
     }
 
-    TEST_F(CBinaryTreeBigestDist, test_withInput) {
+    TEST(TestBinaryTreeBigestDist, test_withInput) {
 //    BinTree *root = nullptr;
 //    buildBinTree(root);
 //    preOrderTraverse(root);
@@ -148,7 +128,7 @@ namespace BinaryTreeBigestDist {
 //    destroyBinTree(root);
     }
 
-    TEST_F(CBinaryTreeBigestDist, test_02) {
+    TEST(TestBinaryTreeBigestDist, test_02) {
         // 构建的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928192111.png
         char data[17] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', 'X', '#', '#', '#'};
         BinTree *root = nullptr;

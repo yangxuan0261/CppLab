@@ -14,25 +14,6 @@ using namespace std;
 
 namespace VitualTable {
 
-    class CVitualTable : public ::testing::Test {
-    public:
-        CVitualTable() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CVitualTable() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     typedef std::function<void(void)> Fun0;  //适用于有实例对象
 
     class Base0 {
@@ -45,7 +26,7 @@ namespace VitualTable {
 
     };
 
-    TEST_F(CVitualTable, test_vtAddr01) {
+    TEST(TestVitualTable, test_vtAddr01) {
         Fun0 pFun = nullptr;
 
         Base0 b;
@@ -125,7 +106,7 @@ namespace VitualTable {
         //double price; //加了个8个字节的double，字节对齐时会占用更多字节，对象大小增大
     };
 
-    TEST_F(CVitualTable, test_vtAddr02) {
+    TEST(TestVitualTable, test_vtAddr02) {
         if (true) {
             return; // TODO: 这里会闪退, 暂时不测
         }
@@ -284,7 +265,7 @@ namespace VitualTable {
         }
     };
 
-    TEST_F(CVitualTable, test_callfunc01) {
+    TEST(TestVitualTable, test_callfunc01) {
         base_class *pbc = nullptr; //父类指针
         base_class bc;
         drived_class1 dc1;
@@ -314,7 +295,7 @@ namespace VitualTable {
     struct Cat {
     };
 
-    TEST_F(CVitualTable, test_emptyClass) {
+    TEST(TestVitualTable, test_emptyClass) {
         printf("--- dog size:%d\n", sizeof(Dog)); //4
         printf("--- cat size:%d\n", sizeof(Cat)); //1，空类或则结构体都会有1个字节大小，目的是在new是分配内存，可以通过地址寻找到
         printf("\n");
@@ -334,7 +315,7 @@ namespace VitualTable {
         virtual void foo() { printf("--- has_virts foo \n"); }
     };
 
-    TEST_F(CVitualTable, test_memObject) {
+    TEST(TestVitualTable, test_memObject) {
         has_virts hv;
         hv.d1 = 111;
         hv.d2 = 222;

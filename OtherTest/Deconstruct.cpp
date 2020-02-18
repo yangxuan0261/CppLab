@@ -7,25 +7,6 @@
 
 namespace Deconstruct {
 
-    class CDeconstruct : public ::testing::Test {
-    public:
-        CDeconstruct() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CDeconstruct() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class Base {
     public:
         Base() { printf("--- Base construce\n"); }
@@ -43,7 +24,7 @@ namespace Deconstruct {
         virtual ~Dev() { printf("--- Dev virtual deconstruce\n"); }
     };
 
-    TEST_F(CDeconstruct, test_deconstruce) {
+    TEST(TestDeconstruct, test_deconstruce) {
         Dev *d = new Dev;
         delete d;
         printf("\n");

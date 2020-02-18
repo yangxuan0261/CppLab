@@ -9,8 +9,8 @@ TEST(TestCase, test1) {
 
 TEST(TestCase, test2) {
     std::cout << "---- test2 hello world 111" << std::endl;
-//    ASSERT_TRUE(false) << "--- err: wolegequ"; // 将中断执行
 //    EXPECT_TRUE(false) << "--- err: wolegequ"; // 不中断执行, 会报用例测试失败
+    ASSERT_TRUE(false) << "--- err: wolegequ"; // 将中断执行
     std::cout << "---- test2 hello world 222" << std::endl;
 }
 

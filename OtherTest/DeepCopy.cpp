@@ -10,25 +10,6 @@ using namespace std;
 
 namespace DeepCopy {
 
-    class CDeepCopy : public ::testing::Test {
-    public:
-        CDeepCopy() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CDeepCopy() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class BBB {
     public:
         BBB() : a(nullptr), b(nullptr) {
@@ -73,7 +54,7 @@ namespace DeepCopy {
 
     };
 
-    TEST_F(CDeepCopy, test_CopyConstruct) {
+    TEST(TestDeepCopy, test_CopyConstruct) {
         BBB b1;
         b1.Show();
         BBB b2 = b1;//调用赋值构造函数

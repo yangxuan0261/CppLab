@@ -7,25 +7,6 @@
 
 namespace SizeofTest {
 
-    class CSizeofTest : public ::testing::Test {
-    public:
-        CSizeofTest() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CSizeofTest() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     struct BB {
         int id;             //[0]....[3]
         double weight;      //[8].....[15]　　　　　　原则１
@@ -41,11 +22,11 @@ namespace SizeofTest {
     };
 
 //字节对齐相关
-    TEST_F(CSizeofTest, test_sizeof01) {
+    TEST(TestSizeofTest, test_sizeof01) {
         printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //AA:40 BB:24
     }
 
-    TEST_F(CSizeofTest, test_sizeof02) {
+    TEST(TestSizeofTest, test_sizeof02) {
         //前提都是32位编译器编译
 
         int size = 0;
@@ -96,7 +77,7 @@ namespace SizeofTest {
         int b;
     };
 
-    TEST_F(CSizeofTest, test_sizeof03) {
+    TEST(TestSizeofTest, test_sizeof03) {
         Door d;
         printf("--- door size:%d\n", sizeof(Door));
         printf("--- g size:%d\n", sizeof(Door::g));

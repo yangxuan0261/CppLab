@@ -15,25 +15,6 @@ using namespace std;
 
 namespace Lru {
 
-    class CLru : public ::testing::Test {
-    public:
-        CLru() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CLru() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     struct SObj {
         SObj(std::string _tex) : mTex(_tex) {}
 
@@ -210,7 +191,7 @@ namespace Lru {
         std::queue<SNode *> mRcyQ;
     };
 
-    TEST_F(CLru, test_node) {
+    TEST(TestLru, test_node) {
         LruMgr *lmgr = new LruMgr();
         TextureMgr *tmgr = new TextureMgr();
         tmgr->SetFilter(std::bind(&LruMgr::CaculFunc, lmgr, std::placeholders::_1, std::placeholders::_2));
@@ -231,7 +212,7 @@ namespace Lru {
         lmgr = nullptr;
     }
 
-    TEST_F(CLru, test_queue) {
+    TEST(TestLru, test_queue) {
         std::queue<std::string> tmp;
         tmp.push("aaa");
         tmp.push("bbb");

@@ -11,26 +11,7 @@ using namespace std;
 
 namespace Union {
 
-    class CUnion : public ::testing::Test {
-    public:
-        CUnion() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CUnion() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-    TEST_F(CUnion, test_actVal) {
+    TEST(TestUnion, test_actVal) {
         union testasd {
             char mark;
             long num;
@@ -55,7 +36,7 @@ namespace Union {
         cout << a.score << endl;
     }
 
-    TEST_F(CUnion, test_size) {
+    TEST(TestUnion, test_size) {
         union UBoy {
             int age;
             short num;
@@ -73,7 +54,7 @@ namespace Union {
         printf("size u:%d\n", bo.age); // 5
     }
 
-    TEST_F(CUnion, test_littleOrBigEndian) {
+    TEST(TestUnion, test_littleOrBigEndian) {
         union w {
             int a;
             char b;

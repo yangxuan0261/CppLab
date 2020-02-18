@@ -8,28 +8,9 @@
 
 namespace RightValueRef {
 
-    class CRightValueRef : public ::testing::Test {
-    public:
-        CRightValueRef() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CRightValueRef() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     inline int f(int _arg) { return 50 * _arg; }
 
-    TEST_F(CRightValueRef, test_rightValueRef) {
+    TEST(TestRightValueRef, test_rightValueRef) {
         int a = 10;
         int &&b = 20;
         int &&c = 30 + a;

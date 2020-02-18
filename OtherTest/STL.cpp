@@ -20,25 +20,6 @@
 
 namespace STL {
 
-    class CSTL : public ::testing::Test {
-    public:
-        CSTL() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CSTL() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //lambda表达式 输出vector
     auto printVec = [](const std::vector<int> &_vec) {
         int index = 0;
@@ -85,7 +66,7 @@ namespace STL {
         int mAge;
     };
 
-    TEST_F(CSTL, test_vec) {
+    TEST(TestSTL, test_vec) {
         //lambda表达式 输出vector
         auto printVec = [](std::vector<int> &_vec) {
             int index = 0;
@@ -167,7 +148,7 @@ namespace STL {
         printVecPs(vecPs);
     }
 
-    TEST_F(CSTL, test_map) {
+    TEST(TestSTL, test_map) {
         //lambda表达式 输出map
         auto printMap = [](std::map<int, std::string> &_map) {
             for (auto iter = _map.begin(); iter != _map.end(); iter++)
@@ -184,7 +165,7 @@ namespace STL {
         printMap(myMap);
     }
 
-    TEST_F(CSTL, test_vecDel) {
+    TEST(TestSTL, test_vecDel) {
         std::vector<int> vec = {};
         for (size_t i = 0; i < 10; i++)
             vec.push_back(i);
@@ -204,7 +185,7 @@ namespace STL {
         printf("--- \n");
     }
 
-    TEST_F(CSTL, test_mapDel) {
+    TEST(TestSTL, test_mapDel) {
         //lambda表达式 输出map
         auto printMap = [](std::map<int, int> &_map) {
             for (auto iter = _map.begin(); iter != _map.end(); iter++)
@@ -229,7 +210,7 @@ namespace STL {
         printMap(tmpMap);
     }
 
-    TEST_F(CSTL, test_insertVec) {
+    TEST(TestSTL, test_insertVec) {
         std::vector<int> numVec = {};
         numVec.push_back(1);
         numVec.push_back(2);
@@ -249,7 +230,7 @@ namespace STL {
         printVec(numVec);
     }
 
-    TEST_F(CSTL, test_list) {
+    TEST(TestSTL, test_list) {
         auto func = [](const std::list<int> &_list) {
             for (auto iter = _list.begin(); iter != _list.end(); iter++)
                 printf("%d ", (*iter));
@@ -282,7 +263,7 @@ namespace STL {
         printf("--- list size:%d\n", tmplist.size());
     }
 
-    TEST_F(CSTL, test_vecInsert) {
+    TEST(TestSTL, test_vecInsert) {
         int data[5] = {1, 2, 3, 4, 5};
         std::vector<int> vec;
         vec.insert(vec.begin(), data, data + 5);
@@ -297,7 +278,7 @@ namespace STL {
         std::cout << "--- find result : " << b << std::endl;
     }
 
-    TEST_F(CSTL, test_partialSort) {
+    TEST(TestSTL, test_partialSort) {
         std::vector<int> values = {5, 6, 2, 7, 4, 1, 8, 9, 0, 3};
         printVec(values);
 
@@ -312,7 +293,7 @@ namespace STL {
         printVec(values);
     }
 
-    TEST_F(CSTL, test_NthElement) {
+    TEST(TestSTL, test_NthElement) {
         std::vector<int> values = {5, 6, 2, 7, 4, 1, 8, 9, 0, 3};
         printVec(values);
 
@@ -328,7 +309,7 @@ namespace STL {
     }
 
 
-    TEST_F(CSTL, test_partition) {
+    TEST(TestSTL, test_partition) {
         std::vector<int> values = {5, 6, 2, 7, 4, 1, 8, 9, 0, 3};
         printVec(values);
 
@@ -344,7 +325,7 @@ namespace STL {
             printf("--- value:%d\n", *iter2);
     }
 
-    TEST_F(CSTL, test_removeAndErase) {
+    TEST(TestSTL, test_removeAndErase) {
         std::vector<int> values = {5, 6, 2, 7, 4, 1, 8, 9, 0, 3};
         printVec(values);
         printf("--- size:%d\n", values.size());
@@ -358,7 +339,7 @@ namespace STL {
         printf("--- size:%d\n", values.size());
     }
 
-    TEST_F(CSTL, test_search) {
+    TEST(TestSTL, test_search) {
         auto cmpFunc = [](const int &a, const int &b) -> bool {
             return a < b ? true : false;
         };
@@ -406,7 +387,7 @@ namespace STL {
         printVec(values);
     }
 
-    TEST_F(CSTL, test_searchForMap) {
+    TEST(TestSTL, test_searchForMap) {
         std::map<int, std::string> datas;
         datas.insert(std::make_pair(5, "aaa"));
         datas.insert(std::make_pair(3, "bbb"));
@@ -440,7 +421,7 @@ namespace STL {
     }
 
 //有序序列归并
-    TEST_F(CSTL, test_merge) {
+    TEST(TestSTL, test_merge) {
         auto cmpFunc = [](const int &a, const int &b) -> bool {
             return a < b ? true : false;
         };
@@ -459,7 +440,7 @@ namespace STL {
         _p->ShowName();
     }
 
-    TEST_F(CSTL, test_memFun) {
+    TEST(TestSTL, test_memFun) {
         Person *p1 = new Person(111, "aaa");
         Person *p2 = new Person(222, "bbb");
         Person *p3 = new Person(333, "ccc");
@@ -480,7 +461,7 @@ namespace STL {
         std::for_each(perVec2.begin(), perVec2.end(), std::mem_fun_ref(&Person::ShowName));
     }
 
-    TEST_F(CSTL, test_bind1stAndBind2nd) {
+    TEST(TestSTL, test_bind1stAndBind2nd) {
         std::vector<int> coll;
         for (int i = 1; i <= 10; ++i)
             coll.push_back(i);
@@ -506,7 +487,7 @@ namespace STL {
         printf("--- res:%d\n", res);  //9
     }
 
-    TEST_F(CSTL, test_transform) {
+    TEST(TestSTL, test_transform) {
         std::vector<int> src = {1, 2, 3, 4, 5}; // 建立本地数组，
         std::vector<int> d = {10, 11, 12};
 
@@ -519,7 +500,7 @@ namespace STL {
         printVec(d);
     }
 
-    TEST_F(CSTL, test_findIfRemoveIfReplaceIf) {
+    TEST(TestSTL, test_findIfRemoveIfReplaceIf) {
         //但凡带_if的都是可以指定自定义的函数，大部分情况下都是比较函数，return true or false
 
         int findNum = 6;
@@ -550,7 +531,7 @@ namespace STL {
         printVec(values);
     }
 
-    TEST_F(CSTL, test_binarysearch) {
+    TEST(TestSTL, test_binarysearch) {
         auto printPer = [](const Person *_p) { _p->ShowName(); };
         auto sortFunc = [](const Person *_p1, const Person *_p2) -> bool {
             return _p1->mAge > _p2->mAge ? true : false;
@@ -584,7 +565,7 @@ namespace STL {
         (*p10)();//调用重写操作符()
     }
 
-    TEST_F(CSTL, test_shinkToFit) {
+    TEST(TestSTL, test_shinkToFit) {
         std::vector<int> vec3;
         vec3.reserve(100);
         printf("--- vec3 size1:%d\n", vec3.capacity());
@@ -595,7 +576,7 @@ namespace STL {
         printf("--- vec3 size2:%d\n", vec3.capacity());
     }
 
-    TEST_F(CSTL, test_array) {
+    TEST(TestSTL, test_array) {
         //std::array<int, 5> arr1; //全部值未初始化
         //std::array<int, 5> arr1 = { 1 }; //第一个初始化为1，其余全部为0
         std::array<int, 5> arr1 = {20, 1, 1, 10, 1}; //全部初始化为1
@@ -614,7 +595,7 @@ namespace STL {
     }
 
 //队列中元素累计
-    TEST_F(CSTL, test_accumulate) {
+    TEST(TestSTL, test_accumulate) {
         std::vector<int> values = {5, 6, 2};
         //int sum = accumulate(values.begin(), values.end(), 3, std::multiplies<int>());
         int sum = std::accumulate(values.begin(), values.end(), 0, //ps: accumulate在<numeric>头文件中
@@ -624,7 +605,7 @@ namespace STL {
         printf("--- sum:%d\n", sum);
     }
 
-    TEST_F(CSTL, test_innerProduct) {
+    TEST(TestSTL, test_innerProduct) {
         auto myaccumulator = [](int x, int y) -> int { return x - y; };
         auto myproduct = [](int x, int y) -> int { return x + y; };
 
@@ -669,7 +650,7 @@ namespace STL {
         std::cout << '\n'; //34
     }
 
-    TEST_F(CSTL, test_partialSum) {
+    TEST(TestSTL, test_partialSum) {
         auto myop = [](int x, int y) { return x + y + 1; };
 
         std::vector<int> val = {1, 2, 3, 4, 5};
@@ -701,7 +682,7 @@ namespace STL {
         printVec(result);
     }
 
-    TEST_F(CSTL, test_adjacentDifference) {
+    TEST(TestSTL, test_adjacentDifference) {
         std::array<int, 6> ia = {1, 1, 2, 3, 5, 8};
         std::list<int> ilist(ia.begin(), ia.end());
         std::list<int> ilist_result(ilist.size());
@@ -720,7 +701,7 @@ namespace STL {
         printf("\n"); //1 1 2 6 15 40
     }
 
-    TEST_F(CSTL, test_minMaxElement) {
+    TEST(TestSTL, test_minMaxElement) {
         int val1 = 2;
         int val2 = 5;
         const int &c = std::min(val2, val1, [](const int &_a, const int &_b) { return _a < _b ? true : false; });
@@ -750,7 +731,7 @@ namespace STL {
         printf("--- min:%d, max:%d\n", *ret3.first, *ret3.second);
     }
 
-    TEST_F(CSTL, test_shuffle) {
+    TEST(TestSTL, test_shuffle) {
         //正真的洗牌，根据随机数
         std::default_random_engine generator1(time(NULL)); //随机数生产器
         std::vector<int> datas = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -765,7 +746,7 @@ namespace STL {
         printVec(datas2);
     }
 
-    TEST_F(CSTL, test_heap) {
+    TEST(TestSTL, test_heap) {
         //大顶堆
         auto cmpFunc = [](const int &_a, const int &_b) -> bool { return _a < _b ? true : false; };
         std::vector<int> datas = {5, 1, 9, 4, 3, 6, 2, 7, 8, 0};
@@ -794,7 +775,7 @@ namespace STL {
         printVec(datas);
     }
 
-    TEST_F(CSTL, test_nextPermutation) {
+    TEST(TestSTL, test_nextPermutation) {
         /*
         在《STL源码解析》中找到了这个函数，在此也简单叙述一下原理：
         在STL中，除了next_permutation外，还有一个函数prev_permutation，
@@ -818,7 +799,7 @@ namespace STL {
 
     }
 
-    TEST_F(CSTL, test_mismatch) {
+    TEST(TestSTL, test_mismatch) {
         auto cmpFunc = [](const int &_a, const int &_b) -> bool { return _a == _b ? true : false; };
         std::vector<int> datas1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         std::vector<int> datas2 = {0, 1, 2, 3, 4, 0, 6, 7, 8, 9};
@@ -832,7 +813,7 @@ namespace STL {
         }
     }
 
-    TEST_F(CSTL, test_copy) {
+    TEST(TestSTL, test_copy) {
         std::vector<int> datas1 = {0, 1, 2, 3, 4, 0, 2, 7, 8, 2};
         std::vector<int> datas2(datas1.size());
         std::copy(datas1.begin(), datas1.end(), datas2.begin());
@@ -845,7 +826,7 @@ namespace STL {
         printVec(datas3);
     }
 
-    TEST_F(CSTL, test_unorderMap) {
+    TEST(TestSTL, test_unorderMap) {
         auto printMap = [](const std::unordered_map<int, std::string> &datas) {
             for (auto iter = datas.begin(); iter != datas.end(); iter++)
                 printf("--- key:%d, value:%s\n", iter->first, iter->second.c_str());
@@ -869,7 +850,7 @@ namespace STL {
         std::map<int, int> datas2;
     }
 
-    TEST_F(CSTL, test_mapWithCmpFunc1) {
+    TEST(TestSTL, test_mapWithCmpFunc1) {
         //-------------按key值排序 ------------------
         //自定义key比较类，重写()操作符，map插入时则会按顺序插入到合适的位置
         struct CmpByKey {
@@ -982,7 +963,7 @@ namespace STL {
         }
     };
 
-    TEST_F(CSTL, test_mapWithCmpFunc2) {
+    TEST(TestSTL, test_mapWithCmpFunc2) {
         /*
         用法的区别就是，stl::map 的key需要定义operator< 。
         而boost::unordered_map需要定义hash_value、equal函数。
@@ -1071,7 +1052,7 @@ namespace STL {
         }
     };
 
-    TEST_F(CSTL, test_unorderHashKey) {
+    TEST(TestSTL, test_unorderHashKey) {
         std::unordered_map<std::string, int, str_hash, str_equal> myMap;
         myMap.insert(std::make_pair("hello", 123));
         myMap.insert(std::make_pair("world", 456));

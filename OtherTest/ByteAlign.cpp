@@ -8,25 +8,6 @@
 
 namespace ByteAlign {
 
-    class CByteAlign : public ::testing::Test {
-    public:
-        CByteAlign() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CByteAlign() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 /*
 · 使用伪指令#pragma pack (n)，C编译器将按照n个字节对齐。
 · 使用伪指令#pragma pack ()，取消自定义字节对齐方式。
@@ -72,7 +53,7 @@ namespace ByteAlign {
         //int x9;
     };
 
-    TEST_F(CByteAlign, test_byteAlign01) {
+    TEST(TestByteAlign, test_byteAlign01) {
         printf("--- MyStruct1 size:%d\n", sizeof(MyStruct1));
 
         MyStruct1 ms;
@@ -132,7 +113,7 @@ namespace ByteAlign {
         BB b;             //[16]......[47]　　　　　　　　　　
     };
 
-    TEST_F(CByteAlign, test_byteAlign02) {
+    TEST(TestByteAlign, test_byteAlign02) {
         printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //40, 24
     }
 
@@ -149,7 +130,7 @@ namespace ByteAlign {
         char name[10];//[8-17]
     };
 
-    TEST_F(CByteAlign, test_byteAlign03) {
+    TEST(TestByteAlign, test_byteAlign03) {
         printf("--- stu:%d\n", sizeof(stu)); //16
     }
 
@@ -182,7 +163,7 @@ namespace ByteAlign {
         char c4;
     };
 
-    TEST_F(CByteAlign, test_byteAlign04) {
+    TEST(TestByteAlign, test_byteAlign04) {
         printf("--- size of Concrete0:%d\n", sizeof(Concrete0)); //8
         printf("--- size of Concrete3:%d\n", sizeof(Concrete3)); //16
         //翻了一倍的大小

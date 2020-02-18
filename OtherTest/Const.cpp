@@ -7,25 +7,6 @@
 
 namespace Const {
 
-    class CConst : public ::testing::Test {
-    public:
-        CConst() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CConst() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class Car {
     public:
         void Run() const { printf("--- Car Run\n"); }
@@ -40,7 +21,7 @@ namespace Const {
         tmpCar->Stop();
     }
 
-    TEST_F(CConst, test_Const) {
+    TEST(TestConst, test_Const) {
         Car *car = new Car;
         carFunc(car);
     }

@@ -9,25 +9,6 @@
 
 namespace MutipleArgs {
 
-    class CMutipleArgs : public ::testing::Test {
-    public:
-        CMutipleArgs() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CMutipleArgs() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //---------------------------- test1 for function
     enum LuaParameterType {
         LPT_NUM = 0,
@@ -120,7 +101,7 @@ namespace MutipleArgs {
     }
 //--------------------- 实现模板的递归 end ------------------
 
-    TEST_F(CMutipleArgs, test_argsForFunc) {
+    TEST(TestMutipleArgs, test_argsForFunc) {
         mutipleArgsVec.clear();
         showArgs(123, "aaa", 23.23f, 'c', true);
         printData();
@@ -159,7 +140,7 @@ namespace MutipleArgs {
         MultiArgs<Args...> ma(_args...);
     }
 
-    TEST_F(CMutipleArgs, test_argsForClass) {
+    TEST(TestMutipleArgs, test_argsForClass) {
         sendMsg(111, "yang", 22.22f, true);
     }
 /*
@@ -209,7 +190,7 @@ namespace MutipleArgs {
         return MyTupleRet(222, "bbb", 333.33f, 'w');
     }
 
-    TEST_F(CMutipleArgs, test_tuple) {
+    TEST(TestMutipleArgs, test_tuple) {
         MyPairRet pairRet = GetPairRet();
         printf("--- pair first:%d, second:%s\n", pairRet.first, pairRet.second.c_str());
 

@@ -7,25 +7,6 @@ using namespace std;
 namespace OptimalBST2 {
     //最优二叉查找树
 
-    class COptimalBST2 : public ::testing::Test {
-    public:
-        COptimalBST2() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~COptimalBST2() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     const int MaxVal = 9999;
 
     const int n = 5;
@@ -113,7 +94,7 @@ namespace OptimalBST2 {
         printOptimalBST(rootChild + 1, j, rootChild);
     }
 
-    TEST_F(COptimalBST2, test_main) {
+    TEST(TestOptimalBST2, test_main) {
         optimalBST(p, q, n);
         printRoot();
         cout << "最优二叉树结构：" << endl;

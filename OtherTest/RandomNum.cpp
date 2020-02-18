@@ -8,26 +8,7 @@
 
 namespace RandomNum {
 
-    class CRandomNum : public ::testing::Test {
-    public:
-        CRandomNum() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CRandomNum() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-    TEST_F(CRandomNum, test_randNum) {
+    TEST(TestRandomNum, test_randNum) {
         std::minstd_rand0 generator0(time(NULL)); // linear_congruential_engine 线性同余法
         std::default_random_engine generator1(time(NULL)); // mersenne_twister_engine 梅森旋转法
         std::uniform_int_distribution<int> distInt(100, 200); // uniform_int_distribution 整数均匀分布

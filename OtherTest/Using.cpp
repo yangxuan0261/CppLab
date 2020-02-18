@@ -12,25 +12,6 @@ using namespace std;
 
 namespace Using {
 
-    class CUsing : public ::testing::Test {
-    public:
-        CUsing() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CUsing() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class Base {
     public:
         void menfcn() {
@@ -61,7 +42,7 @@ namespace Using {
 使用了using关键字，就可以避免1的情况，是的父类同名函数在子类中得以重载，不被隐藏
 */
 
-    TEST_F(CUsing, test_extBaseFunc) {
+    TEST(TestUsing, test_extBaseFunc) {
         Base b;
         Derived d;
         b.menfcn();
@@ -77,7 +58,7 @@ namespace Using {
 //---------------------------------------test2 可以取代typedef了,而且更加灵活
     using myIntVec = std::vector<int>;
 
-    TEST_F(CUsing, test_typedef01) {
+    TEST(TestUsing, test_typedef01) {
         myIntVec mvec = {1, 2, 3, 4, 5};
         mvec.push_back(123);
         for (int num : mvec)
@@ -89,7 +70,7 @@ namespace Using {
     template<typename T>
     using MapStr = std::map<T, std::string>;
 
-    TEST_F(CUsing, test_typedef02) {
+    TEST(TestUsing, test_typedef02) {
         MapStr<int> intStrMap;
         intStrMap.insert(make_pair(123, "aaa"));
         intStrMap.insert(make_pair(456, "bbb"));

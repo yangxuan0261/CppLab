@@ -10,32 +10,13 @@
 
 namespace MakeEnumToString {
 
-    class CMakeEnumToString : public ::testing::Test {
-    public:
-        CMakeEnumToString() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CMakeEnumToString() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     enum MyEm {
         ME_Apple = 0,
         ME_Banana,
         ME_Oringe,
     };
 
-    TEST_F(CMakeEnumToString, test_makeEnumToString) {
+    TEST(TestMakeEnumToString, test_makeEnumToString) {
         std::string str1 = MakeEm2Str(ME_Apple);
         std::string str2 = MakeEm2Str(ME_Banana);
         std::string str3 = MakeEm2Str(ME_Oringe);

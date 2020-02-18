@@ -6,25 +6,6 @@ using namespace std;
 
 namespace MergeSort {
 
-    class CMergeSort : public ::testing::Test {
-    public:
-        CMergeSort() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CMergeSort() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //------------------------归并排序----------------------------
 //将有二个有序数列a[first...mid]和a[mid...last]合并。
     void mergearray(int a[], int first, int mid, int last, int temp[]) {
@@ -73,7 +54,7 @@ namespace MergeSort {
         cout << endl;
     }
 
-    TEST_F(CMergeSort, test_main) {
+    TEST(TestMergeSort, test_main) {
         int a[10] = {9, 12, 17, 30, 50, 20, 60, 65, 4, 49};
         int length = sizeof(a) / sizeof(int);
         PrintArr(a, length);

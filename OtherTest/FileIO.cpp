@@ -8,26 +8,7 @@
 
 namespace FileIO {
 
-    class CFileIO : public ::testing::Test {
-    public:
-        CFileIO() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CFileIO() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-    TEST_F(CFileIO, tes_fileOut) {
+    TEST(TestFileIO, tes_fileOut) {
         std::string content("");
         for (size_t i = 0; i < 5; i++) {
             content.append("------ test content\n");

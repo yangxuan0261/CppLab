@@ -129,27 +129,8 @@ std::ostream &operator<<(std::ostream &_os, const CMyString &_str) {
     return _os;
 }
 
-class CMyStringTest : public ::testing::Test {
-public:
-    CMyStringTest() : Test() {
-        std::cout << std::endl;
-        std::cout << "------ constructor" << std::endl;
-    }
-
-    ~CMyStringTest() {
-    }
-
-    virtual void SetUp() {
-        Test::SetUp();
-    }
-
-    virtual void TearDown() {
-        Test::TearDown();
-    }
-};
-
 namespace MyString {
-    TEST_F(CMyStringTest, test_main) {
+    TEST(TestMyStringTest, test_main) {
         CMyString str1("aaa");
         CMyString str2("bbbccc");
         CMyString str3 = str1 + str2;

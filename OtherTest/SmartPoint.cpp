@@ -8,25 +8,6 @@
 
 namespace SmartPoint {
 
-    class CSmartPoint : public ::testing::Test {
-    public:
-        CSmartPoint() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CSmartPoint() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
     class Human {
     public:
         Human() : mNum(nullptr) {
@@ -56,7 +37,7 @@ namespace SmartPoint {
         int *mNum;
     };
 
-    TEST_F(CSmartPoint, test_smartPoint01) {
+    TEST(TestSmartPoint, test_smartPoint01) {
         std::unique_ptr<Human> up1(new Human);
         //std::unique_ptr<Human> h2 = h1; //编译失败，
         up1->show();
@@ -70,7 +51,7 @@ namespace SmartPoint {
         //h3->show();//运行时崩溃，已显式释放对象内存，现在为empty状态
     }
 
-    TEST_F(CSmartPoint, test_smartPoint02) {
+    TEST(TestSmartPoint, test_smartPoint02) {
         //如果std::shared_ptr<Human> sp1为empty状态，则不会进入这样的判断if(sp1)
         //void reset() _NOEXCEPT
         //{	// release resource and convert to empty shared_ptr object
@@ -121,7 +102,7 @@ Human 析构
 请按任意键继续. . .
 */
 
-    TEST_F(CSmartPoint, test_smartPoint03) {
+    TEST(TestSmartPoint, test_smartPoint03) {
         std::shared_ptr<Human> sp1(new Human());
         std::shared_ptr<Human> sp2 = sp1;
         std::weak_ptr<Human> wp = sp1; //不会影响引用计数

@@ -9,25 +9,6 @@
 
 namespace Pod {
 
-    class CPod : public ::testing::Test {
-    public:
-        CPod() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CPod() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //-------------------------- defaut 显示指定为缺省，有助于自定义无参数的构造函数的类恢复POD特制
 //-------------------------------test1 平凡的（trivial）
     struct Trivial1 {
@@ -84,7 +65,7 @@ namespace Pod {
         virtual void f(); //包含有虚函数，不符合(4)
     };
 
-    TEST_F(CPod, test_trivial) {
+    TEST(TestPod, test_trivial) {
         std::cout << std::is_trivial<Trivial1>::value << std::endl; // 1
         std::cout << std::is_trivial<Trivial2>::value << std::endl; // 1
         std::cout << std::is_trivial<Trivial3>::value << std::endl; // 1
@@ -114,7 +95,7 @@ namespace Pod {
         int i;
     };
 
-    TEST_F(CPod, test_standardLayout) {
+    TEST(TestPod, test_standardLayout) {
         D1 d1;
         D2 d2;
         std::cout << (&d1) << std::endl; //0018F730
@@ -147,7 +128,7 @@ namespace Pod {
 
 #include <typeinfo>
 
-    TEST_F(CPod, test_deleteFunc) {
+    TEST(TestPod, test_deleteFunc) {
         NoCopy a;
         //NoCopy b(a); //编译报错，被删除的函数
         //NoCopy* d = new NoCopy(); //编译报错，被删除的函数

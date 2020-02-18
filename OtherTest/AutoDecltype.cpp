@@ -10,25 +10,6 @@ using namespace std;
 
 namespace AutoDecltype {
 
-    class CAutoDecltype : public ::testing::Test {
-    public:
-        CAutoDecltype() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CAutoDecltype() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
 //----------------------------------test1 宏实现
 #define GetProperty(Var, VarName) \
     inline auto Get##VarName() const->decltype(Var) { return Var; }
@@ -50,7 +31,7 @@ namespace AutoDecltype {
         GetSetProperty(mName, Name);
     };
 
-    TEST_F(CAutoDecltype, test_declType1) {
+    TEST(TestAutoDecltype, test_declType1) {
         int iarr[10] = {0};
         decltype(iarr) ib;                        //这个时候ib的定义等价于 int ib[10];两者是一样的，不要认为ib是一个指针了，它是一个正宗的数组。
         printf("--- sizeof ib:%d\n", sizeof(ib)); //40
@@ -77,7 +58,7 @@ namespace AutoDecltype {
         return foo(_t);
     }
 
-    TEST_F(CAutoDecltype, test_declType3) {
+    TEST(TestAutoDecltype, test_declType3) {
         std::cout << Forward(2) << std::endl;   //2.1
         std::cout << Forward(0.2) << std::endl; //1
     }

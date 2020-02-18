@@ -8,27 +8,8 @@ using namespace std;
 
 namespace Bit {
 
-    class CBit : public ::testing::Test {
-    public:
-        CBit() : Test() {
-            std::cout << std::endl;
-            std::cout << "------ constructor" << std::endl;
-        }
-
-        ~CBit() {
-        }
-
-        virtual void SetUp() {
-            Test::SetUp();
-        }
-
-        virtual void TearDown() {
-            Test::TearDown();
-        }
-    };
-
-// 所有奇数
-    TEST_F(CBit, test_getOdd) {
+    // 所有奇数
+    TEST(TestBit, test_getOdd) {
         for (int i = 0; i < 100; ++i) {
             if (i & 1)
                 printf("%d ", i);
@@ -37,7 +18,7 @@ namespace Bit {
     }
 
 // 交换数字
-    TEST_F(CBit, test_exchangeNum) {
+    TEST(TestBit, test_exchangeNum) {
         auto func = [](int &a, int &b) {
             if (a != b) {
                 a ^= b;
@@ -91,7 +72,7 @@ namespace Bit {
         unsigned nYear : 1;
     };
 
-    TEST_F(CBit, test_fieldsSize) {
+    TEST(TestBit, test_fieldsSize) {
         Data1 d1;
         Data2 d2;
         Data3 d3;
