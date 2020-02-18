@@ -2,9 +2,28 @@
 #include <sstream>
 #include <string>
 
+#include "gtest/gtest.h"
 
-namespace OverrideTest {
+namespace Override {
 
+    class COverride : public ::testing::Test {
+    public:
+        COverride() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~COverride() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     class CBase {
     public:
@@ -41,7 +60,7 @@ namespace OverrideTest {
 
     };
 
-    void testOverride() {
+    TEST_F(COverride, test_override) {
         CBase *d1 = new CDev;
 
         d1->test1(1, "asd");
@@ -56,10 +75,4 @@ namespace OverrideTest {
         delete d1;
 
     }
-
-    void main() {
-
-        testOverride();
-    }
-
-} // OverrideTest
+}

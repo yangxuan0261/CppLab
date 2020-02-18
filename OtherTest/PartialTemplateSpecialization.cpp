@@ -4,9 +4,28 @@
 #include <string>
 #include <typeinfo>
 
+#include "gtest/gtest.h"
 
 namespace PartialTemplateSpecialization {
 
+    class CPartialTemplateSpecialization : public ::testing::Test {
+    public:
+        CPartialTemplateSpecialization() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CPartialTemplateSpecialization() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 /*
 偏特化就是部分特化。
@@ -53,7 +72,7 @@ namespace PartialTemplateSpecialization {
     template<>
     class B<int>; //特例化int型不给实现，让编译时报错未定义
 
-    void testTemplate() {
+    TEST_F(CPartialTemplateSpecialization, test_template01) {
         A<int> a(111);
         a.myPrintf<double>(); //int特化的实例，有myPrintf方法
         //a.template myPrintf<double>(); //竟然也可以这样加个template调用，从cocos中的rapidjson中看到才知道
@@ -81,15 +100,8 @@ namespace PartialTemplateSpecialization {
         return value < low ? low : (value > high ? high : value);
     }
 
-    void testTemplate3() {
+    TEST_F(CPartialTemplateSpecialization, test_template02) {
         int num = myClamp(2.f, 1.f, 3.f);
         printf("--- num:%d\n", num);
     }
-
-    void main() {
-        testTemplate();
-        //testTemplate3();
-
-    }
-
-} // PartialTemplateSpecialization
+}

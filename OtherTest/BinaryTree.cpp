@@ -1,17 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include <queue>
 #include <vector>
 #include <string>
 #include <map>
 #include <stack>
 
-using namespace std;
-#define Element char
+#include "gtest/gtest.h"
+
+typedef char Element;
 #define format "%c"
 
+using namespace std;
+
 namespace BinaryTree {
+
+    class CBinaryTree : public ::testing::Test {
+    public:
+        CBinaryTree() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CBinaryTree() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
+
 
     typedef struct Node {
         Element data;
@@ -19,12 +41,12 @@ namespace BinaryTree {
         struct Node *rchild;
     } *Tree;
 
-    int index = 0;  //全局索引变量
+    int myindex = 0;  //全局索引变量
 
-    //二叉树构造器,按先序遍历顺序构造二叉树
-    //无左子树或右子树用'#'表示
+//二叉树构造器,按先序遍历顺序构造二叉树
+//无左子树或右子树用'#'表示
     void treeNodeConstructor(Tree &root, Element data[]) {
-        Element e = data[index++];
+        Element e = data[myindex++];
         if (e == '#') {
             root = NULL;
         } else {
@@ -35,7 +57,7 @@ namespace BinaryTree {
         }
     }
 
-    //深度优先遍历, 思路参考: http://rapheal.iteye.com/blog/1526863
+//深度优先遍历, 思路参考: http://rapheal.iteye.com/blog/1526863
     void depthFirstSearch(Tree root) {
         stack<Node *> nodeStack;  //使用C++的STL标准模板库
         nodeStack.push(root);
@@ -53,7 +75,7 @@ namespace BinaryTree {
         }
     }
 
-    //广度优先遍历, 思路参考: http://rapheal.iteye.com/blog/1526861
+//广度优先遍历, 思路参考: http://rapheal.iteye.com/blog/1526861
     void breadthFirstSearch(Tree root) {
         queue<Node *> nodeQueue;  //使用C++的STL标准模板库
         nodeQueue.push(root);
@@ -71,7 +93,8 @@ namespace BinaryTree {
         }
     }
 
-    void main() {
+    TEST_F(CBinaryTree, test_main) {
+//    system("chcp 65001"); // 防止中文乱码, 设置字符集
         // 构成的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928173554.png
         //上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树
         Element data[15] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#'};
@@ -81,22 +104,5 @@ namespace BinaryTree {
         depthFirstSearch(tree);
         printf("\n\n广度优先遍历二叉树结果: ");
         breadthFirstSearch(tree);
-        system("pause");
     }
 }
-
-// int main() {
-// 	system("chcp 65001"); // 防止中文乱码, 设置字符集
-// 	// 构成的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928173554.png
-// 	//上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树
-// 	Element data[15] = { 'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#' };
-// 	BinaryTree::Tree tree;
-// 	BinaryTree::treeNodeConstructor(tree, data);
-// 	printf("深度优先遍历二叉树结果: ");
-// 	BinaryTree::depthFirstSearch(tree);
-// 	printf("\n\n广度优先遍历二叉树结果: ");
-// 	BinaryTree::breadthFirstSearch(tree);
-// 	printf("\n");
-// 	system("pause");
-// 	return 0;
-// }

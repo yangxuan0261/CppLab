@@ -8,10 +8,30 @@
 #include <utility>
 #include <functional>
 
+#include "gtest/gtest.h"
+
 using namespace std;
 
-namespace VitualTableTest {
+namespace VitualTable {
 
+    class CVitualTable : public ::testing::Test {
+    public:
+        CVitualTable() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CVitualTable() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     typedef std::function<void(void)> Fun0;  //适用于有实例对象
 
@@ -25,7 +45,7 @@ namespace VitualTableTest {
 
     };
 
-    int test0() {
+    TEST_F(CVitualTable, test_vtAddr01) {
         Fun0 pFun = nullptr;
 
         Base0 b;
@@ -35,9 +55,6 @@ namespace VitualTableTest {
         // Invoke the first virtual function
         //pFun = (Fun0)*((int*)*(int*)(&b));
         //pFun();
-
-        system("pause");
-        return 0;
     }
 
     typedef void(*Fun)(void);   //void类型的函数指针 //适用于无实例对象，例如全局函数等
@@ -108,9 +125,13 @@ namespace VitualTableTest {
         //double price; //加了个8个字节的double，字节对齐时会占用更多字节，对象大小增大
     };
 
-    void testVirtualTable() {
+    TEST_F(CVitualTable, test_vtAddr02) {
+        if (true) {
+            return; // TODO: 这里会闪退, 暂时不测
+        }
+
         //Base b1;
-        //b1.j();            //compile error
+        //b1.j();            //compile error, 私有变量无法访问
 
         dev d;
         d.num = 100;
@@ -127,13 +148,14 @@ namespace VitualTableTest {
         //cout << "虚函数表 — 第一个函数地址：" << (int*)*(int*)(&d) << endl;
         printf("\n");
 
+        std::cout << "---- test 111" << std::endl;
         //通过函数指针访问到私有的j(), j()对于对象来讲本来是不可见的,指针太强大
         Fun pFun2 = nullptr;
         //第一个虚函数表指针指向
         //pFun2 = (Fun)*((int*)*(int*)(&d) + 0); //Base::~Base //析构不能调
         //pFun2();
         pFun2 = (Fun) *((int *) *(int *) (&d) + 1); //dev::f //dev重写Base的f
-        pFun2();
+//        pFun2();
         pFun2 = (Fun) *((int *) *(int *) (&d) + 2); //Base::g
         pFun2();
         pFun2 = (Fun) *((int *) *(int *) (&d) + 3); //Base::h
@@ -147,6 +169,7 @@ namespace VitualTableTest {
         printf("--- base1Num:%d\n", base1Num); //123
         printf("\n");
 
+        std::cout << "---- test 222" << std::endl;
         //第二个虚函数表指针指向
         //pFun2 = (Fun)*((int*)*((int*)(&d) + 1) + 0);  //Base2::~Base2 //析构不能调
         //pFun2();
@@ -156,6 +179,8 @@ namespace VitualTableTest {
         pFun2();
         pFun2 = (Fun) *((int *) *((int *) (&d) + 2) + 3); //dev::z //dev重写Base2的z
         pFun2();
+
+        std::cout << "---- test 333" << std::endl;
         //Base2 base2Num的存储偏移在虚函数表指针的下4个字节
         int base2Num = (int) *((int *) (&d) + 3);
         printf("--- base2Num:%d\n", base2Num); //456
@@ -259,8 +284,8 @@ namespace VitualTableTest {
         }
     };
 
-    int test2() {
-        base_class *pbc = NULL; //父类指针
+    TEST_F(CVitualTable, test_callfunc01) {
+        base_class *pbc = nullptr; //父类指针
         base_class bc;
         drived_class1 dc1;
         drived_class2 dc2;
@@ -276,9 +301,6 @@ namespace VitualTableTest {
         pbc = &dc2;
         pbc->normal_func();//没有virtual关键字，父类指针会调父类的normal_func方法
         pbc->virtual_fuc();//有virtual关键字，调子类virtual_fuc方法
-
-        system("pause");
-        return 0;
     }
 
     // ------------------------------------------------ test3 -------------------------
@@ -292,7 +314,7 @@ namespace VitualTableTest {
     struct Cat {
     };
 
-    void testEmptyClass() {
+    TEST_F(CVitualTable, test_emptyClass) {
         printf("--- dog size:%d\n", sizeof(Dog)); //4
         printf("--- cat size:%d\n", sizeof(Cat)); //1，空类或则结构体都会有1个字节大小，目的是在new是分配内存，可以通过地址寻找到
         printf("\n");
@@ -312,7 +334,7 @@ namespace VitualTableTest {
         virtual void foo() { printf("--- has_virts foo \n"); }
     };
 
-    void testMemObj() {
+    TEST_F(CVitualTable, test_memObject) {
         has_virts hv;
         hv.d1 = 111;
         hv.d2 = 222;
@@ -328,13 +350,5 @@ namespace VitualTableTest {
         printf("--- d2:%d\n", d2);
         int d3 = (int) *((int *) (&hv) + 3); //333
         printf("--- d3:%d\n", d3);
-    }
-
-    void main() {
-        test0();
-        //testVirtualTable()
-        //test2();
-        //testEmptyClass();
-        testMemObj();
     }
 }

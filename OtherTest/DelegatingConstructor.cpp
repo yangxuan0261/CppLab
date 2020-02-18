@@ -3,13 +3,32 @@
 #include <sstream>
 #include <string>
 
+#include "gtest/gtest.h"
+
 namespace DelegatingConstructor {
 
+    class CDelegatingConstructor : public ::testing::Test {
+    public:
+        CDelegatingConstructor() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CDelegatingConstructor() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 /*
 委派构造函数的使用，类似与构造基类
 */
-
     class Info {
     public:
         Info() { init(); }
@@ -36,7 +55,7 @@ namespace DelegatingConstructor {
         float mHeight;
     };
 
-    void testDelegatingConstructor() {
+    TEST_F(CDelegatingConstructor, test_DelegatingConstructor) {
         Info info(77, "yang");
         /*
         --- init mheight:1.230000
@@ -45,9 +64,4 @@ namespace DelegatingConstructor {
         请按任意键继续. . .
         */
     }
-
-    void main() {
-        testDelegatingConstructor();
-    }
-
 }

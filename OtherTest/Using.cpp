@@ -5,12 +5,31 @@
 #include <vector>
 #include <map>
 
-//---------------------------------------test1
+#include "gtest/gtest.h"
+
 using namespace std;
 
 
-namespace UsingTest {
+namespace Using {
 
+    class CUsing : public ::testing::Test {
+    public:
+        CUsing() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CUsing() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     class Base {
     public:
@@ -42,7 +61,7 @@ namespace UsingTest {
 使用了using关键字，就可以避免1的情况，是的父类同名函数在子类中得以重载，不被隐藏
 */
 
-    void testUsing1() {
+    TEST_F(CUsing, test_extBaseFunc) {
         Base b;
         Derived d;
         b.menfcn();
@@ -58,7 +77,7 @@ namespace UsingTest {
 //---------------------------------------test2 可以取代typedef了,而且更加灵活
     using myIntVec = std::vector<int>;
 
-    void testUsing2() {
+    TEST_F(CUsing, test_typedef01) {
         myIntVec mvec = {1, 2, 3, 4, 5};
         mvec.push_back(123);
         for (int num : mvec)
@@ -70,7 +89,7 @@ namespace UsingTest {
     template<typename T>
     using MapStr = std::map<T, std::string>;
 
-    void testUsing3() {
+    TEST_F(CUsing, test_typedef02) {
         MapStr<int> intStrMap;
         intStrMap.insert(make_pair(123, "aaa"));
         intStrMap.insert(make_pair(456, "bbb"));
@@ -79,12 +98,4 @@ namespace UsingTest {
         strstrMap.insert(make_pair("ccc", "ddd"));
         strstrMap.insert(make_pair("eee", "fff"));
     }
-
-    int main() {
-        testUsing1();
-        //testUsing2();
-        //testUsing3();
-        system("pause");
-        return 0;
-    }
-} 
+}

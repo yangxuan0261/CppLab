@@ -4,13 +4,32 @@
 #include <string>
 #include <vector>
 
+#include "gtest/gtest.h"
 
 namespace RightValueRef {
 
+    class CRightValueRef : public ::testing::Test {
+    public:
+        CRightValueRef() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CRightValueRef() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     inline int f(int _arg) { return 50 * _arg; }
 
-    void testRightValueRef() {
+    TEST_F(CRightValueRef, test_rightValueRef) {
         int a = 10;
         int &&b = 20;
         int &&c = 30 + a;
@@ -21,9 +40,4 @@ namespace RightValueRef {
         std::cout << "--- c value and address: " << c << ", " << &c << std::endl;
         std::cout << "--- d value and address: " << d << ", " << &d << std::endl;
     }
-
-    void main() {
-        testRightValueRef();
-    }
-
-} // RightValueRef
+}

@@ -3,11 +3,32 @@
 #include <algorithm>
 #include <ctime>
 
+#include "gtest/gtest.h"
+
 using namespace std;
 
-namespace ACompareSort {
+namespace CompareSort {
 
-    //------------------------快速排序----------------------------
+    class CCompareSort : public ::testing::Test {
+    public:
+        CCompareSort() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CCompareSort() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
+
+//------------------------快速排序----------------------------
     void quick_sort(int s[], int l, int r) {
         if (l < r) {
             int i = l, j = r, x = s[l];
@@ -28,8 +49,8 @@ namespace ACompareSort {
         }
     }
 
-    //------------------------归并排序----------------------------
-    //将有二个有序数列a[first...mid]和a[mid...last]合并。
+//------------------------归并排序----------------------------
+//将有二个有序数列a[first...mid]和a[mid...last]合并。
     void mergearray(int a[], int first, int mid, int last, int temp[]) {
         int i = first, j = mid + 1;
         int m = mid, n = last;
@@ -69,15 +90,15 @@ namespace ACompareSort {
         return true;
     }
 
-    //------------------------堆排序---------------------------
+//------------------------堆排序---------------------------
     inline void Swap(int &a, int &b) {
         int c = a;
         a = b;
         b = c;
     }
 
-    //建立最小堆
-    //  从i节点开始调整,n为节点总数 从0开始计算 i节点的子节点为 2*i+1, 2*i+2
+//建立最小堆
+//  从i节点开始调整,n为节点总数 从0开始计算 i节点的子节点为 2*i+1, 2*i+2
     void MinHeapFixdown(int a[], int i, int n) {
         int j, temp;
 
@@ -97,7 +118,7 @@ namespace ACompareSort {
         a[i] = temp;
     }
 
-    //建立最小堆
+//建立最小堆
     void MakeMinHeap(int a[], int n) {
         for (int i = n / 2 - 1; i >= 0; i--)
             MinHeapFixdown(a, i, n);
@@ -114,7 +135,7 @@ namespace ACompareSort {
     int a[MAXN];
     int b[MAXN], c[MAXN], d[MAXN];
 
-    void main() {
+    TEST_F(CCompareSort, test_compareSort) {
         int i;
         srand(time(NULL));
         for (i = 0; i < MAXN; ++i)

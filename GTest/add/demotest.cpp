@@ -9,7 +9,8 @@ public:
     int mNum2 = 456;
 
     GTestDemo() : Test() {
-        std::cout << "------ constructor" << std::endl;
+        std::cout << std::endl;
+        std::cout << "------ constructor" << std::endl; // 换行, 为了好看点
     }
 
     ~GTestDemo() {
@@ -25,13 +26,20 @@ public:
         Test::TearDown();
         std::cout << "--- TearDown" << std::endl;
     }
+
+    void hello() {
+        std::cout << "--- hello" << std::endl;
+    }
 };
 
 TEST_F(GTestDemo, tc_example_01) {
+    int a = 1;
+    hello();
     std::cout << "tc_example_01: " << mNum2 << std::endl;
 }
 
 TEST_F(GTestDemo, tc_example_02) {
     std::cout << "tc_example_02" << std::endl;
+    EXPECT_TRUE(true) << "--- diagnostic message";
 }
 

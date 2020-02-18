@@ -9,10 +9,30 @@
 #include <functional>
 #include <cstring>
 
+#include "gtest/gtest.h"
+
 using namespace std;
 
+namespace Lru {
 
-namespace lruTest {
+    class CLru : public ::testing::Test {
+    public:
+        CLru() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CLru() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     struct SObj {
         SObj(std::string _tex) : mTex(_tex) {}
@@ -190,7 +210,7 @@ namespace lruTest {
         std::queue<SNode *> mRcyQ;
     };
 
-    void test() {
+    TEST_F(CLru, test_node) {
         LruMgr *lmgr = new LruMgr();
         TextureMgr *tmgr = new TextureMgr();
         tmgr->SetFilter(std::bind(&LruMgr::CaculFunc, lmgr, std::placeholders::_1, std::placeholders::_2));
@@ -211,7 +231,7 @@ namespace lruTest {
         lmgr = nullptr;
     }
 
-    void testQueue() {
+    TEST_F(CLru, test_queue) {
         std::queue<std::string> tmp;
         tmp.push("aaa");
         tmp.push("bbb");
@@ -227,10 +247,4 @@ namespace lruTest {
         tmp.pop();
         printf("--- empty:%d\n", (int) tmp.empty());
     }
-
-    void main() {
-        test();
-        //testQueue();
-    }
-
-} // lruTest
+}

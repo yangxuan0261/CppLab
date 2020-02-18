@@ -4,8 +4,28 @@
 #include <string>
 #include <functional>
 
+#include "gtest/gtest.h"
+
 namespace ByteAlign {
 
+    class CByteAlign : public ::testing::Test {
+    public:
+        CByteAlign() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CByteAlign() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 /*
 · 使用伪指令#pragma pack (n)，C编译器将按照n个字节对齐。
@@ -52,7 +72,7 @@ namespace ByteAlign {
         //int x9;
     };
 
-    void testByteAlign() {
+    TEST_F(CByteAlign, test_byteAlign01) {
         printf("--- MyStruct1 size:%d\n", sizeof(MyStruct1));
 
         MyStruct1 ms;
@@ -112,7 +132,7 @@ namespace ByteAlign {
         BB b;             //[16]......[47]　　　　　　　　　　
     };
 
-    void testByteAlign2() {
+    TEST_F(CByteAlign, test_byteAlign02) {
         printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //40, 24
     }
 
@@ -129,7 +149,7 @@ namespace ByteAlign {
         char name[10];//[8-17]
     };
 
-    void testByteAlign3() {
+    TEST_F(CByteAlign, test_byteAlign03) {
         printf("--- stu:%d\n", sizeof(stu)); //16
     }
 
@@ -162,7 +182,7 @@ namespace ByteAlign {
         char c4;
     };
 
-    void testByteAlign4() {
+    TEST_F(CByteAlign, test_byteAlign04) {
         printf("--- size of Concrete0:%d\n", sizeof(Concrete0)); //8
         printf("--- size of Concrete3:%d\n", sizeof(Concrete3)); //16
         //翻了一倍的大小
@@ -172,14 +192,6 @@ namespace ByteAlign {
         Concrete3 : 4 + 1 + 1 + 2(补齐) + 1 + 3(补齐) + 1 + 3(补齐) = 16
         */
     }
-
-    void main() {
-        testByteAlign();
-//        testByteAlign2();
-        //testByteAlign3();
-        //testByteAlign4();
-    }
-
 /*
 1、大字节的变量放在前面，小的放后面
 2、字节大小相同的变量放一起，相邻摆放，比如 int,int,short,bool, 不要 int,bool,int, short

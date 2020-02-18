@@ -1,9 +1,31 @@
-//̰���㷨
+// 贪心算法
 #include<iostream>
+
+#include "gtest/gtest.h"
 
 using namespace std;
 
 namespace Greedy {
+
+    class CGreedy : public ::testing::Test {
+    public:
+        CGreedy() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CGreedy() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
+
     int GreedySelect(int *s, int *f, int length, int *a) {
         int i, j = 2;
         a[1] = 1;
@@ -17,7 +39,7 @@ namespace Greedy {
         return j;
     }
 
-    extern void main() {
+    TEST_F(CGreedy, test_greedy) {
         int s[12] = {0, 1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12};
         int f[12] = {0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         int a[13];

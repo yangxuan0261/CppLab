@@ -18,6 +18,7 @@ TEST(TestCase, test3) {
 }
 
 GTEST_API_ int main(int argc, char **argv) {
+    system("chcp 65001");
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

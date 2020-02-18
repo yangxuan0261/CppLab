@@ -1,6 +1,8 @@
 #include "MyString.h"
 #include <cstring>
 
+#include "gtest/gtest.h"
+
 CMyString::CMyString(const char *_str /* = NULL */)
         : mCharArr(nullptr) {
     if (!_str)
@@ -127,8 +129,27 @@ std::ostream &operator<<(std::ostream &_os, const CMyString &_str) {
     return _os;
 }
 
+class CMyStringTest : public ::testing::Test {
+public:
+    CMyStringTest() : Test() {
+        std::cout << std::endl;
+        std::cout << "------ constructor" << std::endl;
+    }
+
+    ~CMyStringTest() {
+    }
+
+    virtual void SetUp() {
+        Test::SetUp();
+    }
+
+    virtual void TearDown() {
+        Test::TearDown();
+    }
+};
+
 namespace MyString {
-    void main() {
+    TEST_F(CMyStringTest, test_main) {
         CMyString str1("aaa");
         CMyString str2("bbbccc");
         CMyString str3 = str1 + str2;
@@ -147,5 +168,4 @@ namespace MyString {
         int pos = str3.FindStrPos("ab");
         printf("--- pos:%d\n", pos);
     }
-
-} // MyString
+}

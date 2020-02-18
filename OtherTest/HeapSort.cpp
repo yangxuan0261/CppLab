@@ -1,8 +1,29 @@
 #include <iostream>
 
+#include "gtest/gtest.h"
+
 using namespace std;
 
 namespace HeapSort {
+
+    class CHeapSort : public ::testing::Test {
+    public:
+        CHeapSort() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CHeapSort() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     inline void Swap(int &a, int &b) {
         int c = a;
@@ -72,8 +93,7 @@ namespace HeapSort {
         cout << endl;
     }
 
-    void main() {
-
+    TEST_F(CHeapSort, test_main) {
         int a[10] = {9, 12, 17, 30, 50, 20, 60, 65, 4, 49};
         int length = sizeof(a) / sizeof(int);
         PrintArr(a, length);
@@ -90,4 +110,4 @@ namespace HeapSort {
 3、添加值，从堆尾添加，再向上调整
 */
 
-} // namespace HeapSort
+}

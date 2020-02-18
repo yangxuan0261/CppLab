@@ -4,12 +4,30 @@
 #include <string>
 #include <vector>
 
+#include "gtest/gtest.h"
 
 #define MakeEm2Str(E)    #E
 
-
 namespace MakeEnumToString {
 
+    class CMakeEnumToString : public ::testing::Test {
+    public:
+        CMakeEnumToString() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CMakeEnumToString() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     enum MyEm {
         ME_Apple = 0,
@@ -17,7 +35,7 @@ namespace MakeEnumToString {
         ME_Oringe,
     };
 
-    void testMakeEnumToString() {
+    TEST_F(CMakeEnumToString, test_makeEnumToString) {
         std::string str1 = MakeEm2Str(ME_Apple);
         std::string str2 = MakeEm2Str(ME_Banana);
         std::string str3 = MakeEm2Str(ME_Oringe);
@@ -25,9 +43,4 @@ namespace MakeEnumToString {
         printf("--- str2:%s\n", str2.c_str());
         printf("--- str3:%s\n", str3.c_str());
     }
-
-    void main() {
-        testMakeEnumToString();
-    }
-
-} // MakeEnumToString
+}

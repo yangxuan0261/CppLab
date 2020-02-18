@@ -1,17 +1,34 @@
 #include <iostream>
-
-using namespace std;
-
-// by MoreWindows( http://blog.csdn.net/MoreWindows )
 #include <cstdio>
 #include <algorithm>
 #include <ctime>
 
-using namespace std;
+#include "gtest/gtest.h"
 
+// by MoreWindows( http://blog.csdn.net/MoreWindows )
+
+using namespace std;
 
 namespace QuickSort {
 
+    class CQuickSort : public ::testing::Test {
+    public:
+        CQuickSort() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CQuickSort() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 //------------------------快速排序----------------------------
     void quick_sort(int s[], int l, int r) {
@@ -41,7 +58,7 @@ namespace QuickSort {
         cout << endl;
     }
 
-    void main() {
+    TEST_F(CQuickSort, test_main) {
         int a[10] = {9, 12, 17, 30, 50, 20, 60, 65, 4, 49};
         int length = sizeof(a) / sizeof(int);
         PrintArr(a, length);
@@ -49,5 +66,4 @@ namespace QuickSort {
         quick_sort(a, 0, length - 1);
         PrintArr(a, length);
     }
-
-} // QuickSort
+}

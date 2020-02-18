@@ -4,8 +4,28 @@
 #include <string>
 #include <memory>
 
-namespace SmartPointTest {
+#include "gtest/gtest.h"
 
+namespace SmartPoint {
+
+    class CSmartPoint : public ::testing::Test {
+    public:
+        CSmartPoint() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CSmartPoint() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     class Human {
     public:
@@ -36,7 +56,7 @@ namespace SmartPointTest {
         int *mNum;
     };
 
-    void testSmartPoint1() {
+    TEST_F(CSmartPoint, test_smartPoint01) {
         std::unique_ptr<Human> up1(new Human);
         //std::unique_ptr<Human> h2 = h1; //编译失败，
         up1->show();
@@ -48,10 +68,9 @@ namespace SmartPointTest {
 
         up3.reset();//已显式释放对象内存
         //h3->show();//运行时崩溃，已显式释放对象内存，现在为empty状态
-        system("pause");
     }
 
-    void testSmartPoint2() {
+    TEST_F(CSmartPoint, test_smartPoint02) {
         //如果std::shared_ptr<Human> sp1为empty状态，则不会进入这样的判断if(sp1)
         //void reset() _NOEXCEPT
         //{	// release resource and convert to empty shared_ptr object
@@ -87,7 +106,6 @@ namespace SmartPointTest {
 
         sp3.reset();//减少引用后，_Rep和_Ptr都置为nullptr，sp3为empty状态 //此时已无shared_ptr对sp3保持引用，对象被释放
         printf("--- sp3 ref count:%ld\n", sp3.use_count()); //0
-        system("pause");
     }
 
 /*
@@ -103,7 +121,7 @@ Human 析构
 请按任意键继续. . .
 */
 
-    void testSmartPoint3() {
+    TEST_F(CSmartPoint, test_smartPoint03) {
         std::shared_ptr<Human> sp1(new Human());
         std::shared_ptr<Human> sp2 = sp1;
         std::weak_ptr<Human> wp = sp1; //不会影响引用计数
@@ -129,11 +147,4 @@ Human 析构
             printf("--- sp5 ref count:%ld\n", sp4.use_count());
 
     }
-
-    void main() {
-        //testSmartPoint1();
-        //testSmartPoint2();
-        testSmartPoint3();
-    }
-
 }

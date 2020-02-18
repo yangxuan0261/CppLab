@@ -3,9 +3,30 @@
 #include <sstream>
 #include <string>
 
+#include "gtest/gtest.h"
+
 void GFuncTest() { printf("--- GFuncTest\n"); }
 
 namespace EnumClassScope {
+
+    class CEnumClassScope : public ::testing::Test {
+    public:
+        CEnumClassScope() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CEnumClassScope() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     enum EM_A {
         aaa = 0,
@@ -39,11 +60,10 @@ namespace EnumClassScope {
         void test2() { printf("--- Yun test2"); }
     };
 
-    void testEnum() {
+    TEST_F(CEnumClassScope, test_enum) {
         int a = bbb;
         //int b = EM_B::eee; //error, c++11枚举类，必须使用作用域EM_B, 且转换必须使用显示强转，不然编译报错
         int b = (int) EM_B::eee; //正确
-
         Yun y;
         int c = (int) Yun::EM_C::xxx;
 
@@ -57,13 +77,8 @@ namespace EnumClassScope {
         VMAX = 1 << 3,
     };
 
-    void testScope() {
+    TEST_F(CEnumClassScope, test_scope) {
         auto p = new Yun();
         p->test1();
-    }
-
-    void main() {
-        //testEnum();
-        testScope();
     }
 }

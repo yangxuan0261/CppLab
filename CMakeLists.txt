@@ -27,7 +27,6 @@ file(GLOB_RECURSE SRC_GTest
         GTest/add/*.cpp
         )
 
-#set(mainCpp main.cpp)
 set(mainCpp GTest/main.cpp) # gtest 入口文件
 set(SOURCE_FILES ${mainCpp} ${SRC_OtherTest} ${SRC_ExternTest} ${AlgorithmTest} ${SRC_GTest})
 

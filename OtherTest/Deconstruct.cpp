@@ -3,8 +3,28 @@
 #include <sstream>
 #include <string>
 
-namespace DeconstructTest {
+#include "gtest/gtest.h"
 
+namespace Deconstruct {
+
+    class CDeconstruct : public ::testing::Test {
+    public:
+        CDeconstruct() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CDeconstruct() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     class Base {
     public:
@@ -23,8 +43,7 @@ namespace DeconstructTest {
         virtual ~Dev() { printf("--- Dev virtual deconstruce\n"); }
     };
 
-
-    void testDeconstruce() {
+    TEST_F(CDeconstruct, test_deconstruce) {
         Dev *d = new Dev;
         delete d;
         printf("\n");
@@ -33,9 +52,4 @@ namespace DeconstructTest {
         delete d2;
         printf("\n");
     }
-
-    void main() {
-        testDeconstruce();
-    }
-
 }

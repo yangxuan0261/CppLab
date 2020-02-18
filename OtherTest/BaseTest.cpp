@@ -4,15 +4,36 @@
 #include <string>
 #include <vector>
 #include <list>
-#include "AAA.h"
+#include "ClassTemplate.h"
 #include <cstring>
+
+#include "gtest/gtest.h"
 
 using namespace std;
 
 namespace BaseTest {
 
+    class CBaseTest : public ::testing::Test {
+    public:
+        CBaseTest() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
 
-    void testStr(float _num) {
+        ~CBaseTest() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
+
+    TEST_F(CBaseTest, test_string) {
+        float _num = 123.45f;
         char buff[12];
         sprintf(buff, "%0.2f", _num);
         printf("--- buff: %s\n", buff);
@@ -37,7 +58,7 @@ namespace BaseTest {
         printf("--- destPath: %s\n", path.c_str());
     }
 
-    void testStr2() {
+    TEST_F(CBaseTest, test_stringSubstr) {
         std::string s("456789");
         int len = s.length();
         for (size_t i = 0; i < len; i++) {
@@ -48,7 +69,7 @@ namespace BaseTest {
         }
     }
 
-    void testArrPtr() {
+    TEST_F(CBaseTest, test_arrayPtr01) {
         // 得到数组的最后一个数 - 使用指向数组的指针来完成
         printf("--- 得到数组的最后一个数的趣味实现 \n");
 
@@ -64,7 +85,7 @@ namespace BaseTest {
         //printf("--- num:%d\n", num);
     }
 
-    void testArrPtr2() {
+    TEST_F(CBaseTest, test_arrayPtr02) {
         auto func = [](int *arr, int row, int col) {
             int counter = 0;
             for (size_t i = 0; i < row; i++) {
@@ -104,31 +125,30 @@ namespace BaseTest {
         const char *name;
     };
 
-    void testFunc() {
+    TEST_F(CBaseTest, test_funcName) {
         const char *charr = testFuncName();
-        printf("--- func name:%s\n", charr);
+        printf("--- func name:%s\n", charr); // --- func name:testFuncName
 
         testAAA t1;
-        printf("--- test name:%s\n", t1.name);
+        printf("--- test name:%s\n", t1.name); // --- test name:testAAA
     }
 
-    void testlonglong() {
+    TEST_F(CBaseTest, test_lognlong) {
         auto num = 234123123ll;
         printf("--- num:%lld\n", num);
     }
 
-    std::vector<int> GetVec() { return {1, 2, 3}; }
 
-    void testGetVec() {
+    TEST_F(CBaseTest, test_getVec) {
+        auto GetVec = []() -> std::vector<int> { return {1, 2, 3}; };
         std::vector<int> &&v = GetVec();
         for (int a : v)
             printf("---a:%d\n", a);
     }
 
-    void testR() {
+    TEST_F(CBaseTest, test_stringR) {
         std::string tmp = " 吃饭了";
-        std::string str = R"(hello \n \t 好的
-							world)" " ##早上好" + tmp;
+        std::string str = R"(hello \n \t 好的 world)" " ##早上好" + tmp;
         std::cout << str << std::endl;
     }
 
@@ -194,7 +214,7 @@ namespace BaseTest {
         return strOut;
     }
 
-    void testStr3() {
+    TEST_F(CBaseTest, test_subUTF8) {
         std::string str = "asd注\n\n\n册阿斯顿qwe";
         str = stringReplace(str, "\n", "");
         std::string tmp = subUTF8(str.c_str(), 0, 6);
@@ -203,7 +223,7 @@ namespace BaseTest {
         printf("--- %s\n", tmp2.c_str());
     }
 
-    void testStr4() {
+    TEST_F(CBaseTest, test_strlen) {
         const char *mystr = "hello";
         printf("len=%d\n", strlen(mystr));
 
@@ -211,7 +231,7 @@ namespace BaseTest {
         printf("len2=%d\n", strlen(mystr + 5)); //越界到 \0 字符, 因此长度为 0
     }
 
-    void testList() {
+    TEST_F(CBaseTest, test_list) {
         std::list<std::string> ml;
         ml.push_back("aaaa");
         ml.push_back("bbb");
@@ -220,20 +240,5 @@ namespace BaseTest {
             printf("--- val:%s\n", (*ml.begin()).c_str());
             ml.pop_front();
         }
-    }
-
-    void main() {
-        // testStr(56);
-        //testStr2();
-        testStr4();
-        //testArrPtr();
-        //testArrPtr2();
-        //testFunc();
-        //testlonglong();
-        //testGetVec();
-        //testR();
-        //testStringReplace();
-        //testStr3();
-        // testList();
     }
 }

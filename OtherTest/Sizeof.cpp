@@ -3,9 +3,28 @@
 #include <sstream>
 #include <string>
 
+#include "gtest/gtest.h"
 
 namespace SizeofTest {
 
+    class CSizeofTest : public ::testing::Test {
+    public:
+        CSizeofTest() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CSizeofTest() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     struct BB {
         int id;             //[0]....[3]
@@ -22,11 +41,11 @@ namespace SizeofTest {
     };
 
 //字节对齐相关
-    void testSizeof2() {
+    TEST_F(CSizeofTest, test_sizeof01) {
         printf("--- sizeAA:%d, sizeBB:%d\n", sizeof(AA), sizeof(BB)); //AA:40 BB:24
     }
 
-    void testSizeof() {
+    TEST_F(CSizeofTest, test_sizeof02) {
         //前提都是32位编译器编译
 
         int size = 0;
@@ -77,16 +96,9 @@ namespace SizeofTest {
         int b;
     };
 
-    void testSizeof3() {
+    TEST_F(CSizeofTest, test_sizeof03) {
         Door d;
         printf("--- door size:%d\n", sizeof(Door));
         printf("--- g size:%d\n", sizeof(Door::g));
     }
-
-    void main() {
-        //testSizeof();
-        //testSizeof2();
-        testSizeof3();
-    }
-
-} // SizeofTest
+}

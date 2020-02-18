@@ -3,9 +3,29 @@
 #include <sstream>
 #include <string>
 
+#include "gtest/gtest.h"
 
-namespace FriendTrest {
+namespace Friend {
 
+
+    class CFriend : public ::testing::Test {
+    public:
+        CFriend() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CFriend() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 //------------------------- test1
     class FT {
@@ -45,8 +65,7 @@ namespace FriendTrest {
         std::string mName;
     };
 
-
-    void testFriendMethod() {
+    TEST_F(CFriend, test_friendMethod01) {
         auto p = new FT;
         p->setData("aaa", 99);
         std::cout << *p << std::endl;;
@@ -77,14 +96,9 @@ namespace FriendTrest {
         friend Tom; //C++98失败，C++11通过
     };
 
-    void testFriend2() {
+    TEST_F(CFriend, test_friendMethod02) {
         AAA a;
         BBB b;
         CCC c;
     }
-
-    void main() {
-        testFriendMethod();
-        testFriend2();
-    }
-} // FriendTrest
+}

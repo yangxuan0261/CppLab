@@ -3,9 +3,33 @@
 #include <iostream>
 #include <cstring>
 
+#include "gtest/gtest.h"
+
+using namespace std;
+
 namespace BinaryTreeBigestDist {
 
-    int index = 0;  //全局索引变量
+    class CBinaryTreeBigestDist : public ::testing::Test {
+    public:
+        CBinaryTreeBigestDist() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CBinaryTreeBigestDist() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
+
+
+    int myindex = 0;  //全局索引变量
 
     typedef struct Node {
         struct Node *pleft;     //左孩子
@@ -79,7 +103,7 @@ namespace BinaryTreeBigestDist {
 
 //创建二叉树
     void buildBinTreeByData(BinTree *&root, char data[]) {
-        char ch = data[index++];
+        char ch = data[myindex++];
         if (ch == '#')        //若输入的是空格符，表明二叉树为空，置*root为NULL
             root = NULL;
         else {               //若输入的不是空格符，则将该值赋值给根节点的chValue, 递归建立左子树和右子树
@@ -113,18 +137,18 @@ namespace BinaryTreeBigestDist {
         }
     }
 
-// void main2() {
-// 	BinTree* root = nullptr;
-// 	buildBinTree(root);
-// 	preOrderTraverse(root);
-// 	printf("\n");
-// 	int maxLen = 0;
-// 	findMaxLen(root, &maxLen);
-// 	printf("maxLen = %d\n", maxLen);
-// 	destroyBinTree(root);
-// }
+    TEST_F(CBinaryTreeBigestDist, test_withInput) {
+//    BinTree *root = nullptr;
+//    buildBinTree(root);
+//    preOrderTraverse(root);
+//    printf("\n");
+//    int maxLen = 0;
+//    findMaxLen(root, &maxLen);
+//    printf("maxLen = %d\n", maxLen);
+//    destroyBinTree(root);
+    }
 
-    void main() {
+    TEST_F(CBinaryTreeBigestDist, test_02) {
         // 构建的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928192111.png
         char data[17] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', 'X', '#', '#', '#'};
         BinTree *root = nullptr;

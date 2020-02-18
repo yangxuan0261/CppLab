@@ -2,12 +2,32 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "AAA.h"
+#include "ClassTemplate.h"
+
+#include "gtest/gtest.h"
 
 using namespace std;
 
 namespace DeepCopy {
 
+    class CDeepCopy : public ::testing::Test {
+    public:
+        CDeepCopy() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CDeepCopy() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
     class BBB {
     public:
@@ -53,12 +73,11 @@ namespace DeepCopy {
 
     };
 
-    void testCopyConstruct() {
+    TEST_F(CDeepCopy, test_CopyConstruct) {
         BBB b1;
         b1.Show();
         BBB b2 = b1;//调用赋值构造函数
         b2.Show();
-        system("pause");
 
         //这个方法调用完之后，会释放栈中b1,b2的内存
         //如果是浅拷贝，则 b1和b2 中的 a和b分别指向相同的地址，
@@ -73,9 +92,4 @@ namespace DeepCopy {
         //	c.一个对象需要通过另外一个对象进行初始化。
 
     }
-
-    void main() {
-        testCopyConstruct();
-    }
-
 }

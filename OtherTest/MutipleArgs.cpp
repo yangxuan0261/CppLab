@@ -5,9 +5,28 @@
 #include <vector>
 #include <tuple>
 
+#include "gtest/gtest.h"
 
-namespace MutipleArgsTest {
+namespace MutipleArgs {
 
+    class CMutipleArgs : public ::testing::Test {
+    public:
+        CMutipleArgs() : Test() {
+            std::cout << std::endl;
+            std::cout << "------ constructor" << std::endl;
+        }
+
+        ~CMutipleArgs() {
+        }
+
+        virtual void SetUp() {
+            Test::SetUp();
+        }
+
+        virtual void TearDown() {
+            Test::TearDown();
+        }
+    };
 
 //---------------------------- test1 for function
     enum LuaParameterType {
@@ -101,7 +120,7 @@ namespace MutipleArgsTest {
     }
 //--------------------- 实现模板的递归 end ------------------
 
-    void testArgsForFunc() {
+    TEST_F(CMutipleArgs, test_argsForFunc) {
         mutipleArgsVec.clear();
         showArgs(123, "aaa", 23.23f, 'c', true);
         printData();
@@ -140,7 +159,7 @@ namespace MutipleArgsTest {
         MultiArgs<Args...> ma(_args...);
     }
 
-    void testArgsForClass() {
+    TEST_F(CMutipleArgs, test_argsForClass) {
         sendMsg(111, "yang", 22.22f, true);
     }
 /*
@@ -190,7 +209,7 @@ namespace MutipleArgsTest {
         return MyTupleRet(222, "bbb", 333.33f, 'w');
     }
 
-    void testTuple() {
+    TEST_F(CMutipleArgs, test_tuple) {
         MyPairRet pairRet = GetPairRet();
         printf("--- pair first:%d, second:%s\n", pairRet.first, pairRet.second.c_str());
 
@@ -204,11 +223,4 @@ namespace MutipleArgsTest {
 
         PrintTuple(tupleRet); //比较聪明输出
     }
-
-
-    void main() {
-        //testArgsForFunc();
-        testArgsForClass();
-        //testTuple();
-    }
-} // MutipleArgsTest
+}
