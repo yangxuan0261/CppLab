@@ -67,25 +67,47 @@ namespace Regex {
             }
         }
 
+        std::string var = "first second third forth";
+
+        std::cout << "----- smatch" << std::endl;
+        const std::regex r("(.*) (.*) (.*) (.*)");
+        std::smatch sm;
+
+        if (regex_search(var, sm, r)) {
+            for (int i = 0; i < sm.size(); i++) { // 捕获到的组, 0 是 匹配串, 之后是组元素
+                std::cout << sm[i] << std::endl;
+            }
+        }
     }
 
-    TEST(TestRegex, test_search2) {
-        std::string pattern{"[a-zA-z]+://[^\\s]*"}; // url
+    TEST(TestRegex, test_search_all01) {
+        std::cout << "----- match all" << std::endl;
+        std::regex exp("(\\b\\S*\\b)");
+        std::smatch res;
+        std::string str2 = "first second third forth";
+
+        while (std::regex_search(str2, res, exp)) {
+            std::cout << res[0] << std::endl; // res[0] 是 匹配串, 如果表达式中还有捕获, 那么 0 之后的就是捕获值
+            str2 = res.suffix();
+        }
+    }
+
+    TEST(TestRegex, test_search_all02) {
+        std::string pattern{"([a-zA-z]+:)//[^\\s]*"}; // url
         std::regex re(pattern);
 
-        std::string str{
-                "my csdn blog addr is: http://blog.csdn.net/wolegequ , my github addr is: https://github.com/wolegequ "};
-        std::smatch results;
-        while (std::regex_search(str, results, re)) {
-            for (auto x : results)
+        std::string str = "my csdn blog addr is: http://blog.csdn.net/wolegequ , my github addr is: https://github.com/wolegequ ";
+        std::smatch res;
+        while (std::regex_search(str, res, re)) {
+            for (auto x : res) // 遍历出 0: 匹配串, 和 0 之后的捕获值
                 std::cout << x << " ";
             std::cout << std::endl;
-            str = results.suffix().str();
+            str = res.suffix();
         }
 
     }
 
-    TEST(TestRegex, test_replace) {
+    TEST(TestRegex, test_replace01) {
         std::string pattern{"\\d{18}|\\d{17}X"}; // id card
         std::regex re(pattern);
 
@@ -110,7 +132,7 @@ namespace Regex {
 
     }
 
-    TEST(TestRegex, test_replace2) {
+    TEST(TestRegex, test_replace02) {
         // reference: http://www.cplusplus.com/reference/regex/regex_replace/
         std::string s("there is a subsequence in the string\n");
         std::regex e("\\b(sub)([^ ]*)");   // matches words beginning by "sub"
