@@ -39,7 +39,6 @@ namespace Regex {
                 fprintf(stdout, "--- %s, can not match\n", tmp.c_str());
             }
         }
-
     }
 
     TEST(TestRegex, test_search) {
@@ -104,7 +103,6 @@ namespace Regex {
             std::cout << std::endl;
             str = res.suffix();
         }
-
     }
 
     TEST(TestRegex, test_replace01) {
@@ -129,7 +127,6 @@ namespace Regex {
             std::string ret = std::regex_replace(tmp, re, fmt);
             fprintf(stdout, "src: %s, dst: %s\n", tmp.c_str(), ret.c_str());
         }
-
     }
 
     TEST(TestRegex, test_replace02) {
@@ -151,6 +148,5 @@ namespace Regex {
         std::cout << std::regex_replace(s, e, "$1 and $2", std::regex_constants::format_no_copy); // sub and sequence
 
         std::cout << std::endl;
-
     }
 }
