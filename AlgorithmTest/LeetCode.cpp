@@ -15,8 +15,6 @@ using namespace std;
 
 namespace LeetCode {
 
-
-
     // LeetCode第3号问题：无重复字符的最长子串.md
     // https://github.com/MisterBooo/LeetCodeAnimation/blob/master/notes/LeetCode%E7%AC%AC3%E5%8F%B7%E9%97%AE%E9%A2%98%EF%BC%9A%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.md
     TEST(TestLeetCode, test_0003) {
@@ -43,5 +41,32 @@ namespace LeetCode {
         // example
         string str1 = "abcabcbb";
         printf("--- len: %d", lengthOfLongestSubstring(str1));
+    }
+
+    // LeetCode 第 26 号问题：删除排序数组中的重复项
+    // https://github.com/MisterBooo/LeetCodeAnimation/blob/master/notes/LeetCode%E7%AC%AC26%E5%8F%B7%E9%97%AE%E9%A2%98%EF%BC%9A%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9.md
+    TEST(TestLeetCode, test_0026) {
+        auto removeDuplicates = [&](vector<int> &nums) -> int {
+            if (nums.empty()) return 0;
+            int pre = 0, cur = 0, n = nums.size();
+            while (cur < n) {
+                if (nums[pre] == nums[cur]) {
+                    cur++;
+                } else {
+                    ++pre;
+                    nums[pre] = nums[cur];
+                    cur++;
+                }
+            }
+            return pre + 1;
+        };
+
+        // example
+        vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int len = removeDuplicates(nums);
+        printf("--- len: %d\n", len);
+        for (int i = 0; i < len; ++i) {
+            printf("--- idx: %d, val: %d\n", i, nums[i]);
+        }
     }
 }
