@@ -5,7 +5,12 @@ project(CppLab)
 
 set(CMAKE_CXX_STANDARD 14)
 
-file(GLOB_RECURSE AlgorithmTest
+file(GLOB_RECURSE SRC_Tool
+        Tool/**.h
+        Tool/**.cpp
+        )
+
+file(GLOB_RECURSE SRC_AlgorithmTest
         AlgorithmTest/**.h
         AlgorithmTest/**.cpp
         )
@@ -28,7 +33,9 @@ file(GLOB_RECURSE SRC_GTest
         )
 
 set(mainCpp GTest/main.cpp) # gtest 入口文件
-set(SOURCE_FILES ${mainCpp} ${SRC_OtherTest} ${SRC_ExternTest} ${AlgorithmTest} ${SRC_GTest})
+set(SOURCE_FILES ${mainCpp} ${SRC_OtherTest} ${SRC_ExternTest} ${SRC_AlgorithmTest} ${SRC_GTest} ${SRC_Tool})
+
+include_directories(./) # 当前项目的搜索路径
 
 ############# googletest module begin #############
 set(gtName gtest) # gtest 库名

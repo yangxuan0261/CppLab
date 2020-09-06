@@ -9,6 +9,8 @@
 
 #include "gtest/gtest.h"
 
+#include "Tool/util.h"
+
 using namespace std;
 
 namespace BaseTest {
@@ -221,5 +223,14 @@ namespace BaseTest {
             printf("--- val:%s\n", (*ml.begin()).c_str());
             ml.pop_front();
         }
+    }
+
+    TEST(TestBase, test_tool) {
+        vector<int> numVt = {111, 222, 333, 444, 555};
+        Tool::printVec(numVt);
+
+        std::cout << std::endl;
+        vector<string> strVt = {"aaa", "bbb", "ccc", "ddd"};
+        Tool::printVec(strVt);
     }
 }
