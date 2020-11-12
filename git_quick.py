@@ -16,6 +16,7 @@ if __name__ == "__main__":
 
     from tool.git_util import GitUtil
 
-    GitUtil.safeUpdate(SelfPath, "origin", "master")
+    os.chdir(SelfPath)
+    GitUtil().safeUpdate("origin", "master")
     os.system("pause")
     sys.exit(0)

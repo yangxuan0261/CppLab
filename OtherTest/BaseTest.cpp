@@ -233,4 +233,28 @@ namespace BaseTest {
         vector<string> strVt = {"aaa", "bbb", "ccc", "ddd"};
         Tool::printVec(strVt);
     }
+
+
+    class CActor {
+    public:
+        void say();
+
+        string name;
+    };
+
+    void CActor::say() {
+        printf("--- %s say\n", this->name.c_str());
+    }
+
+    TEST(TestBase, test_copy) {
+        CActor *a1 = new CActor();
+        a1->name = "hello";
+        a1->say();
+
+        CActor a2 = *a1; // 复制拷贝
+        a2.name = "world";
+
+        a1->say();
+    }
+
 }
