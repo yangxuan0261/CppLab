@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// 国王和金矿问题
+// 国王和金矿问题 (0 1 背包)
 // https://www.cnblogs.com/SDJL/archive/2008/08/22/1274312.html
 // https://www.zhihu.com/question/39948290/answer/663769511
 

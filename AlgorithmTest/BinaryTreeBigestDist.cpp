@@ -81,7 +81,7 @@ namespace BinaryTreeBigestDist {
 // 	}
 // }
 
-//创建二叉树
+    //创建二叉树
     void buildBinTreeByData(BinTree *&root, char data[]) {
         char ch = data[myindex++];
         if (ch == '#')        //若输入的是空格符，表明二叉树为空，置*root为NULL
@@ -97,7 +97,7 @@ namespace BinaryTreeBigestDist {
         }
     }
 
-//销毁二叉树，释放内存
+    //销毁二叉树，释放内存
     void destroyBinTree(BinTree *root) {
         if (root != NULL) {
             destroyBinTree(root->pleft);
@@ -108,10 +108,10 @@ namespace BinaryTreeBigestDist {
         }
     }
 
-//中序遍历二叉树
+    //中序遍历二叉树
     void preOrderTraverse(BinTree *root) {
         if (root != NULL) {
-            printf("%c", root->chValue);
+            printf("%c ", root->chValue);
             preOrderTraverse(root->pleft);
             preOrderTraverse(root->pright);
         }
@@ -129,7 +129,7 @@ namespace BinaryTreeBigestDist {
     }
 
     TEST(TestBinaryTreeBigestDist, test_02) {
-        // 构建的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928192111.png
+        // 构建的二叉树如图: http://yx02.itengshe.com/QQ截图20180928192111.png
         char data[17] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', 'X', '#', '#', '#'};
         BinTree *root = nullptr;
         buildBinTreeByData(root, data);
@@ -137,7 +137,22 @@ namespace BinaryTreeBigestDist {
         printf("\n");
         int maxLen = 0;
         findMaxLen(root, &maxLen);
-        printf("maxLen = %d\n", maxLen);
+        printf("maxLen = %d\n", maxLen); // 5
+        destroyBinTree(root);
+    }
+
+    // https://blog.csdn.net/caryaliu/article/details/8107089
+    TEST(TestBinaryTreeBigestDist, test_03) {
+        // 构建的二叉树如图: https://img-my.csdn.net/uploads/201210/24/1351062927_9153.png
+        char data[19] = {'F', 'G', 'H', 'A', '#', '#', '#', 'M', '#', '#', 'J', 'K', '#', 'B', '#', '#', 'L', '#', '#'};
+        BinTree *root = nullptr;
+        buildBinTreeByData(root, data);
+        preOrderTraverse(root);
+        printf("\n");
+        int maxLen = 0;
+        findMaxLen(root, &maxLen);
+        printf("maxLen = %d\n", maxLen); // 6
         destroyBinTree(root);
     }
 }
+

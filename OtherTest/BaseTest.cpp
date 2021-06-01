@@ -129,6 +129,42 @@ namespace BaseTest {
             printf("---a:%d\n", a);
     }
 
+    TEST(TestBase, test_stringFormat) {
+        std::cout << tool::string_format("name: %s, age: %d", "terry", 123) << std::endl;
+        std::cout << tool::string_format("age: %8d", 123) << std::endl; //       123, 右对齐
+        std::cout << tool::string_format("age: %-8d", 123) << std::endl; // 123     , 左对齐
+        std::cout << tool::string_format("age: %08d", 123) << std::endl; // 00000123, 补零
+
+        cout << endl;
+        char c, s[20], *p;
+        int a = 1234, *i;
+        float f = 3.141592653589;
+        double x = 0.12345678987654321;
+        p = "How do you do";
+        strcpy(s, "Hello, Comrade");
+        *i = 12;
+        c = '\x41';
+
+        printf("a=%d\n", a);     /*结果输出十进制整数a=1234*/
+        printf("a=%6d\n", a);    /*结果输出6位十进制数a= 1234*/
+        printf("a=%06d\n", a);   /*结果输出6位十进制数a=001234*/
+        printf("a=%2d\n", a);    /*a超过2位, 按实际值输出a=1234*/
+        printf("*i=%4d\n", *i); /*输出4位十进制整数*i= 12*/
+        printf("*i=%-4d\n", *i); /*输出左对齐4位十进制整数*i=12*/
+        printf("i=%p\n", i);     /*输出地址i=06E4*/
+        printf("f=%f\n", f);     /*输出浮点数f=3.141593*/
+        printf("f=\n", f);   /*输出6位其中小数点后4位的浮点数f=3.1416*/
+        printf("x=%lf\n", x);    /*输出长浮点数x=0.123457*/
+        printf("x=%18.16lf\n", x);/*输出18位其中小数点后16位的长浮点数x=0.1234567898765432*/
+        printf("c=%c\n", c);     /*输出字符c=A*/
+        printf("c=%x\n", c);     /*输出字符的ASCII码值c=41*/
+        printf("s[]=%s\n", s);   /*输出数组字符串s[]=Hello, Comrade*/
+        printf("s[]=%6.9s\n", s);/*输出最多9个字符的字符串s[]=Hello,Co*/
+        printf("s=%p\n", s);     /*输出数组字符串首字符地址s=FFBE*/
+        printf("*p=%s\n", p);    /* 输出指针字符串p=How do you do*/
+        printf("p=%p\n", p);     /*输出指针的值p=0194*/
+    }
+
     TEST(TestBase, test_stringR) {
         std::string tmp = " 吃饭了";
         std::string str = R"(hello \n \t 好的 world)" " ##早上好" + tmp;
@@ -227,11 +263,11 @@ namespace BaseTest {
 
     TEST(TestBase, test_tool) {
         vector<int> numVt = {111, 222, 333, 444, 555};
-        Tool::printVec(numVt);
+        tool::printVec(numVt);
 
         std::cout << std::endl;
         vector<string> strVt = {"aaa", "bbb", "ccc", "ddd"};
-        Tool::printVec(strVt);
+        tool::printVec(strVt);
     }
 
 
