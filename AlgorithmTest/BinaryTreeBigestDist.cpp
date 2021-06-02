@@ -131,11 +131,14 @@ namespace BinaryTreeBigestDist {
     }
 
     TEST(TestBinaryTreeBigestDist, test_02) {
-        // 构建的二叉树如图: http://yx02.itengshe.com/QQ截图20180928192111.png
+        // 构建的二叉树如图: http://yxbl.itengshe.com/20210602162455-1.webp
         char data[17] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', 'X', '#', '#', '#'};
         BinTree *root = nullptr;
         buildBinTreeByData(root, data);
+
+        printf("--- 前序遍历:\n");
         preOrderTraverse(root);
+
         printf("\n");
         int maxLen = 0;
         findMaxLen(root, &maxLen);
@@ -145,11 +148,14 @@ namespace BinaryTreeBigestDist {
 
     // https://blog.csdn.net/caryaliu/article/details/8107089
     TEST(TestBinaryTreeBigestDist, test_03) {
-        // 构建的二叉树如图: https://img-my.csdn.net/uploads/201210/24/1351062927_9153.png
+        // 构建的二叉树如图: http://yxbl.itengshe.com/20210602162422-1.webp
         char data[19] = {'F', 'G', 'H', 'A', '#', '#', '#', 'M', '#', '#', 'J', 'K', '#', 'B', '#', '#', 'L', '#', '#'};
         BinTree *root = nullptr;
         buildBinTreeByData(root, data);
+
+        printf("--- 前序遍历:\n");
         preOrderTraverse(root);
+
         printf("\n");
         int maxLen = 0;
         findMaxLen(root, &maxLen);

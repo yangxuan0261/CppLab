@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <stack>
+#include "Tool/auxlib.h"
 
 #include "gtest/gtest.h"
 
@@ -23,7 +24,7 @@ namespace BinaryTree {
 
     int myindex = 0;  //全局索引变量
 
-//二叉树构造器,按先序遍历顺序构造二叉树
+//二叉树构造器,按 前序遍历 顺序构造二叉树
 //无左子树或右子树用'#'表示
     void treeNodeConstructor(Tree &root, Element data[]) {
         Element e = data[myindex++];
@@ -75,7 +76,8 @@ namespace BinaryTree {
 
     TEST(TestBinaryTree, test_main) {
 //    system("chcp 65001"); // 防止中文乱码, 设置字符集
-        // 构成的二叉树如图: http://p7kuppz6y.bkt.clouddn.com/QQ截图20180928173554.png
+
+        // 构成的二叉树如图: http://yxbl.itengshe.com/20210602162343-1.webp
         //上图所示的二叉树先序遍历序列,其中用'#'表示结点无左子树或无右子树
         Element data[15] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#'};
         Tree tree;
@@ -85,4 +87,15 @@ namespace BinaryTree {
         printf("\n\n广度优先遍历二叉树结果: ");
         breadthFirstSearch(tree);
     }
+
+    TEST(TestBinaryTree, test_aux) {
+        auxlib::Element data[15] = {'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#'};
+        int myindex = 0;
+        auxlib::CBTNode *tree = nullptr;
+        auxlib::buildBinTree(tree, data, myindex);
+
+        printf("--- 前序遍历: \n");
+        auxlib::preOrderTraverse(tree);
+    }
+
 }

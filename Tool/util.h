@@ -57,4 +57,5 @@ namespace tool {
         return std::move(str);
     }
 }
+
 #endif //__UTIL_H__
