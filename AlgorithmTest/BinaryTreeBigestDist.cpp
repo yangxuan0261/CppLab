@@ -108,12 +108,14 @@ namespace BinaryTreeBigestDist {
         }
     }
 
-    //中序遍历二叉树
+    //前序遍历二叉树
     void preOrderTraverse(BinTree *root) {
         if (root != NULL) {
-            printf("%c ", root->chValue);
+            printf("%c ", root->chValue); // 前序遍历
             preOrderTraverse(root->pleft);
+//            printf("%c ", root->chValue); // 中序遍历
             preOrderTraverse(root->pright);
+//            printf("%c ", root->chValue); // 后序遍历
         }
     }
 
