@@ -30,6 +30,7 @@ namespace MergeSort {
             a[first + i] = temp[i];
     }
 
+    // 归并排序 就是个二叉树的 后序遍历
     void mergesort(int a[], int first, int last, int temp[]) {
         if (first < last) {
             int mid = (first + last) / 2;

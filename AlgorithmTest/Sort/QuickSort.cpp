@@ -12,6 +12,7 @@ using namespace std;
 namespace QuickSort {
 
 //------------------------快速排序----------------------------
+    // 快速排序 就是个二叉树的 前序遍历
     void quick_sort(int s[], int l, int r) {
         if (l < r) {
             int i = l, j = r, x = s[l];
@@ -27,6 +28,7 @@ namespace QuickSort {
                     s[j--] = s[i];
             }
             s[i] = x;
+
             quick_sort(s, l, i - 1); // 递归调用
             quick_sort(s, i + 1, r);
         }
